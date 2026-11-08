@@ -3,141 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crunchyflix - School Edition</title>
-  <style>
-    body { background: #0f0f0f; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
-    .hidden { display: none !important; }
-    
-    /* Login Screen */
-    #login-box { max-width: 350px; margin: 25vh auto; background: #1a1a1a; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-    #login-box h2 { margin-bottom: 20px; color: #ff4655; }
-    input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 16px; border-radius: 6px; border: none; box-sizing: border-box; }
-    input { background: #2a2a2a; color: white; border: 1px solid #444; }
-    button { background: #ff4655; color: white; cursor: pointer; font-weight: bold; margin-top: 15px; }
-    button:hover { background: #e03e4d; }
-
-    /* App Layout */
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
-    .logo { font-size: 24px; font-weight: bold; color: #ff4655; }
-    .nav { display: flex; gap: 10px; }
-    .nav button { width: auto; padding: 8px 16px; background: #222; margin: 0; }
-    .nav button.active { background: #ff4655; }
-
-    /* Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-    .card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; border: 1px solid #2a2a2a; }
-    .card:hover { transform: scale(1.03); }
-    .card img { width: 100%; height: 220px; object-fit: cover; }
-    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    /* Video Modal */
-    #player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; }
-    #player-modal video { width: 85%; max-width: 900px; max-height: 80vh; background: black; border-radius: 8px; }
-    .close-btn { position: absolute; top: 20px; right: 30px; background: #333; color: white; border: none; font-size: 20px; padding: 10px 15px; border-radius: 50%; cursor: pointer; width: auto; }
-  </style>
-</head>
-<body>
-
-  <!-- PASSWORD GATE -->
-  <div id="login-box">
-    <h2>Crunchyflix Secure</h2>
-    <input type="password" id="passcode" placeholder="Enter password...">
-    <button onclick="unlockApp()">Access Library</button>
-  </div>
-
-  <!-- MAIN APP -->
-  <div id="app" class="hidden">
-    <div class="header">
-      <div class="logo">Crunchyflix 🎬</div>
-      <div class="nav">
-        <button id="btn-movies" class="active" onclick="switchTab('movies')">Movies</button>
-        <button id="btn-anime" onclick="switchTab('anime')">Anime</button>
-      </div>
-    </div>
-
-    <!-- MOVIES SECTION -->
-    <div id="movies-section" class="grid">
-      <div class="card" onclick="openPlayer('YOUR_DIRECT_MOVIE_MP4_URL_HERE')">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Movie">
-        <p>Sample Movie 1</p>
-      </div>
-    </div>
-
-    <!-- ANIME SECTION -->
-    <div id="anime-section" class="grid hidden">
-      <div class="card" onclick="openPlayer('YOUR_DIRECT_ANIME_MP4_URL_HERE')">
-        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Anime">
-        <p>Sample Anime Episode 1</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- VIDEO PLAYER MODAL -->
-  <div id="player-modal" class="hidden">
-    <button class="close-btn" onclick="closePlayer()">✕</button>
-    <video id="video-stream" controls autoplay>
-      Your browser does not support video playback.
-    </video>
-  </div>
-
-  <script>
-    function unlockApp() {
-      const pass = document.getElementById('passcode').value;
-      if (pass === "1234") { // Change "1234" to whatever password you want
-        document.getElementById('login-box').classList.add('hidden');
-        document.getElementById('app').classList.remove('hidden');
-      } else {
-        alert("Incorrect password!");
-      }
-    }
-
-    function switchTab(tab) {
-      const isMovies = tab === 'movies';
-      document.getElementById('movies-section').classList.toggle('hidden', !isMovies);
-      document.getElementById('anime-section').classList.toggle('hidden', isMovies);
-      document.getElementById('btn-movies').classList.toggle('active', isMovies);
-      document.getElementById('btn-anime').classList.toggle('active', !isMovies);
-    }
-
-    function openPlayer(url) {
-      const modal = document.getElementById('player-modal');
-      const video = document.getElementById('video-stream');
-      video.src = url;
-      modal.classList.remove('hidden');
-      video.play();
-    }
-
-    function closePlayer() {
-      const modal = document.getElementById('player-modal');
-      const video = document.getElementById('video-stream');
-      video.pause();
-      video.src = "";
-      modal.classList.add('hidden');
-    }
-  </script>
-</body>
-  </html>
-    
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crunchyflix School - by Daksh Sharma</title>
   <style>
     body { background: #0f0f0f; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
     .hidden { display: none !important; }
-
-    /* Login Screen */
-    #login-box { max-width: 350px; margin: 20vh auto; background: #1a1a1a; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-    #login-box h1 { margin-bottom: 5px; color: #ff4655; font-size: 26px; }
+    #login-box { max-width: 350px; margin: 15vh auto; background: #1a1a1a; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    #login-box h1 { margin-bottom: 5px; color: #ff4655; font-size: 26px; margin-top: 0; }
     #login-box p.subtitle { color: #888; margin-top: 0; margin-bottom: 20px; font-size: 14px; }
     input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 16px; border-radius: 6px; border: none; box-sizing: border-box; }
     input { background: #2a2a2a; color: white; border: 1px solid #444; }
     button { background: #ff4655; color: white; cursor: pointer; font-weight: bold; margin-top: 15px; }
-    button:hover { background: #e03e4d; }
-
-    /* App Layout */
     .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
     .logo-container { display: flex; flex-direction: column; }
     .logo { font-size: 22px; font-weight: bold; color: #ff4655; }
@@ -145,31 +20,22 @@
     .nav { display: flex; gap: 10px; }
     .nav button { width: auto; padding: 8px 16px; background: #222; margin: 0; }
     .nav button.active { background: #ff4655; }
-
-    /* Grid */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-    .card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; border: 1px solid #2a2a2a; }
-    .card:hover { transform: scale(1.03); }
+    .card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #2a2a2a; }
     .card img { width: 100%; height: 220px; object-fit: cover; }
-    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    /* Video Player Modal */
+    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; }
     #player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; }
     #player-modal video { width: 85%; max-width: 900px; max-height: 80vh; background: black; border-radius: 8px; }
     .close-btn { position: absolute; top: 20px; right: 30px; background: #ff4655; border: none; color: white; font-size: 20px; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
   </style>
 </head>
 <body>
-
-  <!-- LOGIN SCREEN -->
   <div id="login-box">
     <h1>Crunchyflix School</h1>
     <p class="subtitle">-by Daksh Sharma</p>
     <input type="password" id="passcode" placeholder="Enter Passcode">
     <button onclick="unlockApp()">Enter</button>
   </div>
-
-  <!-- MAIN APP -->
   <div id="app" class="hidden">
     <div class="header">
       <div class="logo-container">
@@ -181,43 +47,33 @@
         <button id="btn-anime" onclick="switchTab('anime')">Anime</button>
       </div>
     </div>
-
-    <!-- MOVIES SECTION -->
     <div id="movies-section" class="grid">
-      <div class="card" onclick="openPlayer('PASTE_YOUR_DIRECT_MOVIE_MP4_URL_HERE')">
+      <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
         <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Movie">
-        <p>Sample Movie 1</p>
+        <p>Big Buck Bunny</p>
       </div>
     </div>
-
-    <!-- ANIME SECTION -->
     <div id="anime-section" class="grid hidden">
-      <div class="card" onclick="openPlayer('PASTE_YOUR_DIRECT_ANIME_MP4_URL_HERE')">
+      <div class="card" onclick="openPlayer('https://www.w3schools.com/html/mov_bbb.mp4')">
         <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Anime">
-        <p>Sample Anime Episode 1</p>
+        <p>Sample Anime</p>
       </div>
     </div>
   </div>
-
-  <!-- VIDEO PLAYER MODAL -->
   <div id="player-modal" class="hidden">
     <button class="close-btn" onclick="closePlayer()">✕</button>
-    <video id="video-stream" controls autoplay preload="auto">
-      Your browser does not support video playback.
-    </video>
+    <video id="video-stream" controls autoplay preload="auto"></video>
   </div>
-
   <script>
     function unlockApp() {
-      const pass = document.getElementById('passcode').value;
-      if (pass === "Daksh 528") {
+      const pass = document.getElementById('passcode').value.trim();
+      if (pass === "Daksh 528" || pass === "daksh528") {
         document.getElementById('login-box').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
       } else {
         alert('Incorrect password!');
       }
     }
-
     function switchTab(tab) {
       const isMovies = tab === 'movies';
       document.getElementById('movies-section').classList.toggle('hidden', !isMovies);
@@ -225,19 +81,13 @@
       document.getElementById('btn-movies').classList.toggle('active', isMovies);
       document.getElementById('btn-anime').classList.toggle('active', !isMovies);
     }
-
     function openPlayer(url) {
-      if (!url || url.includes('PASTE_YOUR_DIRECT')) {
-        alert('Please add a valid video .mp4 link to this card in index.html');
-        return;
-      }
       const modal = document.getElementById('player-modal');
       const video = document.getElementById('video-stream');
       video.src = url;
       modal.classList.remove('hidden');
-      video.play().catch(e => console.log('Autoplay prevented:', e));
+      video.play().catch(e => console.log(e));
     }
-
     function closePlayer() {
       const modal = document.getElementById('player-modal');
       const video = document.getElementById('video-stream');
