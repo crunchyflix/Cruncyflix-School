@@ -15,11 +15,10 @@
     #login-box p.subtitle { color: #a1a1aa; margin: 0 0 20px 0; font-size: 13px; }
     input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 15px; border-radius: 8px; border: none; outline: none; }
     input { background: #27272a; color: white; border: 1px solid #3f3f46; }
-    button { background: #ff4655; color: white; cursor: pointer; font-weight: 600; transition: opacity 0.2s; }
-    button:active { opacity: 0.8; }
+    button { background: #ff4655; color: white; cursor: pointer; font-weight: 600; }
 
     /* Header */
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #27272a; padding-bottom: 12px; margin-bottom: 16px; }
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #27272a; padding-bottom: 12px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
     .logo { font-size: 20px; font-weight: 700; color: #ff4655; }
     .byline { font-size: 11px; color: #a1a1aa; }
     .nav { display: flex; gap: 8px; }
@@ -31,12 +30,13 @@
     .search-box input { width: 100%; background: #18181b; border: 1px solid #27272a; padding: 12px 14px; border-radius: 8px; color: white; font-size: 14px; }
 
     /* Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
-    .card { background: #18181b; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #27272a; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
+    .card { background: #18181b; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #27272a; transition: transform 0.2s, border-color 0.2s; }
+    .card:hover { transform: translateY(-3px); border-color: #ff4655; }
     .card img { width: 100%; height: 190px; object-fit: cover; display: block; }
-    .card p { padding: 10px 8px; margin: 0; font-size: 13px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card p { padding: 10px 8px; margin: 0; font-size: 13px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
 
-    /* Embedded Video Player Modal (Netmirror Style) */
+    /* Netmirror Video Player Modal */
     #player-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.98); display: flex; flex-direction: column; z-index: 9999; }
     .player-topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #121214; border-bottom: 1px solid #27272a; }
     .player-topbar h3 { margin: 0; color: #ff4655; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%; }
@@ -82,27 +82,59 @@
       <input type="text" id="search-input" placeholder="Search movies..." oninput="filterContent()">
     </div>
 
-    <!-- MOVIES -->
+    <!-- MOVIES LIBRARY -->
     <div id="movies-section" class="grid">
       <div class="card" onclick="openPlayer('Spider-Man: Across the Spider-Verse', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Spider-Man">
+        <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500" alt="Spider-Man">
         <p>Spider-Man: Spider-Verse</p>
       </div>
       <div class="card" onclick="openPlayer('Avengers: Endgame', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Avengers">
+        <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=500" alt="Avengers">
         <p>Avengers: Endgame</p>
+      </div>
+      <div class="card" onclick="openPlayer('Interstellar', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=500" alt="Interstellar">
+        <p>Interstellar</p>
+      </div>
+      <div class="card" onclick="openPlayer('The Batman', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
+        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500" alt="Batman">
+        <p>The Batman</p>
+      </div>
+      <div class="card" onclick="openPlayer('Inception', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500" alt="Inception">
+        <p>Inception</p>
+      </div>
+      <div class="card" onclick="openPlayer('Avatar: The Way of Water', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Avatar">
+        <p>Avatar: Way of Water</p>
       </div>
     </div>
 
-    <!-- ANIME -->
+    <!-- ANIME LIBRARY -->
     <div id="anime-section" class="grid hidden">
-      <div class="card" onclick="openPlayer('Demon Slayer S4 Ep 1', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
+      <div class="card" onclick="openPlayer('Demon Slayer: Hashira Training Arc', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
         <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Demon Slayer">
-        <p>Demon Slayer S4 Ep 1</p>
+        <p>Demon Slayer S4</p>
       </div>
-      <div class="card" onclick="openPlayer('Jujutsu Kaisen S2 Ep 1', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
+      <div class="card" onclick="openPlayer('Jujutsu Kaisen Season 2', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
         <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" alt="Jujutsu Kaisen">
-        <p>Jujutsu Kaisen S2 Ep 1</p>
+        <p>Jujutsu Kaisen S2</p>
+      </div>
+      <div class="card" onclick="openPlayer('Naruto Shippuden', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=500" alt="Naruto">
+        <p>Naruto Shippuden</p>
+      </div>
+      <div class="card" onclick="openPlayer('One Piece: Egghead Arc', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
+        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500" alt="One Piece">
+        <p>One Piece Egghead</p>
+      </div>
+      <div class="card" onclick="openPlayer('Attack on Titan Final Season', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
+        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=500" alt="AOT">
+        <p>Attack on Titan</p>
+      </div>
+      <div class="card" onclick="openPlayer('Solo Leveling', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500" alt="Solo Leveling">
+        <p>Solo Leveling</p>
       </div>
     </div>
   </div>
