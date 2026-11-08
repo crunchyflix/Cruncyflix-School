@@ -34,7 +34,7 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 14px; }
     .card { background: #16161a; border-radius: 10px; overflow: hidden; cursor: pointer; border: 1px solid #27272a; transition: transform 0.2s, border-color 0.2s; }
     .card:hover { transform: translateY(-4px); border-color: #ff4655; }
-    .card-img-wrapper { width: 100%; height: 195px; background: #242429; position: relative; overflow: hidden; }
+    .card-img-wrapper { width: 100%; height: 195px; background: #1f1f24; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .card p { padding: 10px 8px; margin: 0; font-size: 13px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; }
 
@@ -88,27 +88,27 @@
     <!-- MOVIES LIBRARY -->
     <div id="movies-section" class="grid">
       <div class="card" onclick="openPlayer('Spider-Man: Across the Spider-Verse', 'https://vjs.zencdn.net/v/oceans.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMzI0NmJjZTItNWJhYi00Njg4LWIxN2TyZDY3MTliODhlNWFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Spider-Man"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500" alt="Spider-Man"></div>
         <p>Spider-Man: Spider-Verse</p>
       </div>
       <div class="card" onclick="openPlayer('Avengers: Endgame', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzIzNzM@._V1_FMjpg_UX1000_.jpg" alt="Avengers"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=500" alt="Avengers"></div>
         <p>Avengers: Endgame</p>
       </div>
       <div class="card" onclick="openPlayer('Interstellar', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Interstellar"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500" alt="Interstellar"></div>
         <p>Interstellar</p>
       </div>
       <div class="card" onclick="openPlayer('The Batman', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BM2MyNTAwZGEtNTAxNi00OGVjLTg4YmItYmMyY2RlZTNlNTgxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="The Batman"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500" alt="The Batman"></div>
         <p>The Batman</p>
       </div>
       <div class="card" onclick="openPlayer('Inception', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg" alt="Inception"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500" alt="Inception"></div>
         <p>Inception</p>
       </div>
       <div class="card" onclick="openPlayer('Avatar: The Way of Water', 'https://vjs.zencdn.net/v/oceans.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctN2ZiOC00YjVlLWFiNzAtNDJhNWZjYzVmNzgxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Avatar"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Avatar"></div>
         <p>Avatar: Way of Water</p>
       </div>
     </div>
@@ -116,27 +116,27 @@
     <!-- ANIME LIBRARY -->
     <div id="anime-section" class="grid hidden">
       <div class="card" onclick="openPlayer('Demon Slayer: Hashira Training', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BYzJkMWEwN2UtMzRjMC00MDUzLTk2YTYtMTkwOTU1NGFhYjQ0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Demon Slayer"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Demon Slayer"></div>
         <p>Demon Slayer S4</p>
       </div>
       <div class="card" onclick="openPlayer('Jujutsu Kaisen Season 2', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BNGY4MTg3NjgtMmFkYi00ZTNkLTg4YWUtM2FhN2E0ZDYwZjBkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Jujutsu Kaisen"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" alt="Jujutsu Kaisen"></div>
         <p>Jujutsu Kaisen S2</p>
       </div>
       <div class="card" onclick="openPlayer('Naruto Shippuden', 'https://vjs.zencdn.net/v/oceans.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BZGFiMWFhNDAtMzUyZS00NmQ2LTljNDYtMmZjNTc5ZDYxMzEyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Naruto"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=500" alt="Naruto"></div>
         <p>Naruto Shippuden</p>
       </div>
       <div class="card" onclick="openPlayer('One Piece: Egghead Arc', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtY2VmMy00Mjk4LWJiM2UtYTdkNTBkMmX3N2E1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="One Piece"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500" alt="One Piece"></div>
         <p>One Piece Egghead</p>
       </div>
       <div class="card" onclick="openPlayer('Attack on Titan Final Season', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTY5ODk1NzUyMl5BMl5BanBnXkFtZTgwMjUyNjEyNjM@._V1_FMjpg_UX1000_.jpg" alt="AOT"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=500" alt="AOT"></div>
         <p>Attack on Titan</p>
       </div>
       <div class="card" onclick="openPlayer('Solo Leveling Season 1', 'https://vjs.zencdn.net/v/oceans.mp4')">
-        <div class="card-img-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BODQ4YTlhMDItYzA5Ni00NmFiLWE3NWItMGY4ZmEzZDg3NmViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Solo Leveling"></div>
+        <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500" alt="Solo Leveling"></div>
         <p>Solo Leveling</p>
       </div>
     </div>
