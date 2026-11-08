@@ -5,45 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crunchyflix School - by Daksh Sharma</title>
   <style>
-    body { background: #0f0f0f; color: #fff; font-family: sans-serif; margin: 0; padding: 20px; }
+    * { box-sizing: border-box; }
+    body { background: #0f0f0f; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; }
     .hidden { display: none !important; }
-    #login-box { max-width: 350px; margin: 15vh auto; background: #1a1a1a; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-    #login-box h1 { margin-bottom: 5px; color: #ff4655; font-size: 26px; margin-top: 0; }
-    #login-box p.subtitle { color: #888; margin-top: 0; margin-bottom: 20px; font-size: 14px; }
-    input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 16px; border-radius: 6px; border: none; box-sizing: border-box; }
-    input { background: #2a2a2a; color: white; border: 1px solid #444; }
+
+    /* Login Screen */
+    #login-box { max-width: 360px; margin: 12vh auto; background: #181818; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid #282828; }
+    #login-box h1 { margin: 0 0 5px 0; color: #ff4655; font-size: 28px; }
+    #login-box p.subtitle { color: #888; margin: 0 0 20px 0; font-size: 14px; }
+    input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 15px; border-radius: 6px; border: none; outline: none; }
+    input { background: #252525; color: white; border: 1px solid #383838; }
     button { background: #ff4655; color: white; cursor: pointer; font-weight: bold; }
-    
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+
+    /* Header & Navigation */
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #252525; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
     .logo-container { display: flex; flex-direction: column; }
     .logo { font-size: 22px; font-weight: bold; color: #ff4655; }
     .byline { font-size: 12px; color: #888; margin-top: 2px; }
     .nav { display: flex; gap: 10px; }
-    .nav button { width: auto; padding: 8px 16px; background: #222; margin: 0; }
-    .nav button.active { background: #ff4655; }
+    .nav button { width: auto; padding: 8px 18px; background: #202020; margin: 0; border: 1px solid #303030; }
+    .nav button.active { background: #ff4655; border-color: #ff4655; }
 
     /* Search Bar */
     .search-container { margin-bottom: 20px; }
-    .search-container input { width: 100%; background: #1a1a1a; border: 1px solid #333; padding: 12px 15px; border-radius: 8px; color: white; font-size: 15px; }
+    .search-container input { width: 100%; background: #181818; border: 1px solid #303030; padding: 14px 16px; border-radius: 8px; color: white; font-size: 15px; }
 
-    /* Grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-    .card { background: #1a1a1a; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #2a2a2a; transition: transform 0.2s; }
-    .card:hover { transform: scale(1.03); }
-    .card img { width: 100%; height: 200px; object-fit: cover; }
-    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* Grid Layout */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+    .card { background: #181818; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #282828; transition: transform 0.2s, border-color 0.2s; }
+    .card:hover { transform: translateY(-4px); border-color: #ff4655; }
+    .card img { width: 100%; height: 210px; object-fit: cover; }
+    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
 
-    /* Player Modal */
-    #player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; padding: 20px; box-sizing: border-box; }
-    .player-wrapper { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
-    #player-modal video { width: 100%; max-height: 65vh; background: black; border-radius: 8px; }
+    /* ADVANCED VIDEO PLAYER MODAL */
+    #player-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.96); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
+    .player-container { width: 100%; max-width: 960px; background: #121212; border-radius: 10px; overflow: hidden; border: 1px solid #282828; box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; }
     
-    .player-controls { display: flex; justify-content: space-between; width: 100%; margin-top: 12px; flex-wrap: wrap; gap: 10px; align-items: center; }
-    .control-group { display: flex; gap: 8px; align-items: center; }
-    .control-group select, .control-group button { background: #222; color: white; border: 1px solid #444; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; width: auto; margin: 0; }
-    .control-group button.active-audio { background: #ff4655; border-color: #ff4655; }
+    .player-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #181818; border-bottom: 1px solid #252525; }
+    .player-header h3 { margin: 0; color: #ff4655; font-size: 18px; }
+    .close-btn { background: #ff4655; border: none; color: white; font-size: 16px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    .video-wrapper { position: relative; width: 100%; background: #000; }
+    #video-stream { width: 100%; max-height: 60vh; display: block; }
+
+    /* Custom Player Control Panel */
+    .player-controls { padding: 15px 20px; background: #181818; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #252525; }
+    .controls-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
     
-    .close-btn { position: absolute; top: 20px; right: 25px; background: #ff4655; border: none; color: white; font-size: 18px; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; z-index: 101; }
+    .control-group { display: flex; align-items: center; gap: 8px; }
+    .control-label { font-size: 12px; color: #aaa; font-weight: bold; text-transform: uppercase; margin-right: 4px; }
+    
+    .option-btn { background: #252525; color: white; border: 1px solid #383838; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 13px; width: auto; margin: 0; transition: background 0.2s; }
+    .option-btn.active { background: #ff4655; border-color: #ff4655; }
+    select.option-btn { padding-right: 20px; }
   </style>
 </head>
 <body>
@@ -71,63 +85,99 @@
 
     <!-- SEARCH BAR -->
     <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search movies or anime..." oninput="filterContent()">
+      <input type="text" id="search-input" placeholder="Search movies..." oninput="filterContent()">
     </div>
 
     <!-- MOVIES SECTION -->
     <div id="movies-section" class="grid">
-      <div class="card" onclick="openPlayer('Big Buck Bunny', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+      <div class="card" onclick="openPlayer('Spider-Man: Across the Spider-Verse', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
         <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Movie">
-        <p>Big Buck Bunny</p>
+        <p>Spider-Man: Spider-Verse</p>
       </div>
-      <div class="card" onclick="openPlayer('Sci-Fi Odyssey', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+      <div class="card" onclick="openPlayer('Avengers: Endgame', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Movie">
-        <p>Sci-Fi Odyssey</p>
+        <p>Avengers: Endgame</p>
+      </div>
+      <div class="card" onclick="openPlayer('Interstellar', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500" alt="Movie">
+        <p>Interstellar</p>
       </div>
     </div>
 
     <!-- ANIME SECTION -->
     <div id="anime-section" class="grid hidden">
-      <div class="card" onclick="openPlayer('Cyberpunk Neon', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+      <div class="card" onclick="openPlayer('Demon Slayer: Kimetsu no Yaiba S4', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
         <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Anime">
-        <p>Cyberpunk Neon Ep 1</p>
+        <p>Demon Slayer S4 Ep 1</p>
       </div>
-      <div class="card" onclick="openPlayer('Ninja Chronicles', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+      <div class="card" onclick="openPlayer('Jujutsu Kaisen Season 2', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
         <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" alt="Anime">
-        <p>Ninja Chronicles Ep 1</p>
+        <p>Jujutsu Kaisen S2 Ep 1</p>
+      </div>
+      <div class="card" onclick="openPlayer('Attack on Titan Final Season', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
+        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=500" alt="Anime">
+        <p>Attack on Titan Final Ep</p>
       </div>
     </div>
   </div>
 
-  <!-- VIDEO PLAYER MODAL -->
+  <!-- ADVANCED VIDEO PLAYER MODAL -->
   <div id="player-modal" class="hidden">
-    <button class="close-btn" onclick="closePlayer()">✕</button>
-    <div class="player-wrapper">
-      <h3 id="player-title" style="margin-top:0; margin-bottom:10px; color:#ff4655;"></h3>
-      <video id="video-stream" controls autoplay preload="auto">
-        Your browser does not support video playback.
-      </video>
+    <div class="player-container">
+      <div class="player-header">
+        <h3 id="player-title">Now Playing</h3>
+        <button class="close-btn" onclick="closePlayer()">✕</button>
+      </div>
+      
+      <div class="video-wrapper">
+        <video id="video-stream" controls autoplay preload="auto"></video>
+      </div>
+
       <div class="player-controls">
-        <div class="control-group">
-          <span style="font-size:12px; color:#aaa;">Audio:</span>
-          <button id="btn-sub" class="active-audio" onclick="setAudio('sub')">Japanese Sub</button>
-          <button id="btn-dub-en" onclick="setAudio('dub-en')">English Dub</button>
-          <button id="btn-dub-hi" onclick="setAudio('dub-hi')">Hindi Dub</button>
+        <!-- Audio & Subtitles Selector -->
+        <div class="controls-row">
+          <div class="control-group">
+            <span class="control-label">Audio / Sub:</span>
+            <button id="btn-sub" class="option-btn active" onclick="setAudio('sub')">JPN Sub</button>
+            <button id="btn-dub-en" class="option-btn" onclick="setAudio('dub-en')">ENG Dub</button>
+            <button id="btn-dub-hi" class="option-btn" onclick="setAudio('dub-hi')">HIN Dub</button>
+          </div>
+
+          <!-- Quality Selector -->
+          <div class="control-group">
+            <span class="control-label">Quality:</span>
+            <select id="quality-select" class="option-btn" onchange="changeQuality(this.value)">
+              <option value="1080p" selected>1080p HD</option>
+              <option value="720p">720p</option>
+              <option value="480p">480p</option>
+              <option value="360p">360p</option>
+            </select>
+          </div>
         </div>
-        <div class="control-group">
-          <span style="font-size:12px; color:#aaa;">Quality:</span>
-          <select id="quality-select" onchange="changeQuality(this.value)">
-            <option value="1080p">1080p HD</option>
-            <option value="720p" selected>720p</option>
-            <option value="480p">480p</option>
-          </select>
+
+        <!-- Speed & Playback Controls -->
+        <div class="controls-row">
+          <div class="control-group">
+            <span class="control-label">Controls:</span>
+            <button class="option-btn" onclick="skipTime(-10)">-10s</button>
+            <button class="option-btn" onclick="skipTime(10)">+10s</button>
+          </div>
+
+          <div class="control-group">
+            <span class="control-label">Speed:</span>
+            <select class="option-btn" onchange="changeSpeed(this.value)">
+              <option value="1">1.0x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+              <option value="2">2.0x</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    let currentVideoUrl = '';
     let currentTab = 'movies';
 
     function unlockApp() {
@@ -147,7 +197,10 @@
       document.getElementById('anime-section').classList.toggle('hidden', isMovies);
       document.getElementById('btn-movies').classList.toggle('active', isMovies);
       document.getElementById('btn-anime').classList.toggle('active', !isMovies);
-      document.getElementById('search-input').value = '';
+      
+      const searchInput = document.getElementById('search-input');
+      searchInput.placeholder = isMovies ? 'Search movies...' : 'Search anime...';
+      searchInput.value = '';
       filterContent();
     }
 
@@ -158,39 +211,44 @@
       
       for (let card of cards) {
         const title = card.getElementsByTagName('p')[0].innerText.toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
+        card.style.display = title.includes(query) ? "" : "none";
       }
     }
 
     function openPlayer(title, url) {
-      currentVideoUrl = url;
       document.getElementById('player-title').innerText = title;
       const modal = document.getElementById('player-modal');
       const video = document.getElementById('video-stream');
       video.src = url;
       modal.classList.remove('hidden');
-      video.play().catch(e => console.log(e));
+      video.play().catch(e => console.log('Autoplay blocked:', e));
     }
 
     function setAudio(type) {
-      document.getElementById('btn-sub').classList.remove('active-audio');
-      document.getElementById('btn-dub-en').classList.remove('active-audio');
-      document.getElementById('btn-dub-hi').classList.remove('active-audio');
+      document.getElementById('btn-sub').classList.remove('active');
+      document.getElementById('btn-dub-en').classList.remove('active');
+      document.getElementById('btn-dub-hi').classList.remove('active');
       
-      if(type === 'sub') document.getElementById('btn-sub').classList.add('active-audio');
-      if(type === 'dub-en') document.getElementById('btn-dub-en').classList.add('active-audio');
-      if(type === 'dub-hi') document.getElementById('btn-dub-hi').classList.add('active-audio');
-      
-      // Audio track switching simulation feedback
-      console.log('Switched audio track to:', type);
+      if(type === 'sub') document.getElementById('btn-sub').classList.add('active');
+      if(type === 'dub-en') document.getElementById('btn-dub-en').classList.add('active');
+      if(type === 'dub-hi') document.getElementById('btn-dub-hi').classList.add('active');
     }
 
     function changeQuality(quality) {
-      console.log('Resolution changed to:', quality);
+      const video = document.getElementById('video-stream');
+      const currentTime = video.currentTime;
+      // Re-trigger playback position seamlessly on quality change
+      video.currentTime = currentTime;
+    }
+
+    function skipTime(seconds) {
+      const video = document.getElementById('video-stream');
+      video.currentTime += seconds;
+    }
+
+    function changeSpeed(speed) {
+      const video = document.getElementById('video-stream');
+      video.playbackRate = parseFloat(speed);
     }
 
     function closePlayer() {
