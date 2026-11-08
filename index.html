@@ -6,76 +6,71 @@
   <title>Crunchyflix School - by Daksh Sharma</title>
   <style>
     * { box-sizing: border-box; }
-    body { background: #0f0f0f; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; }
+    body { background: #09090b; color: #f4f4f5; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 16px; }
     .hidden { display: none !important; }
 
     /* Login Screen */
-    #login-box { max-width: 360px; margin: 12vh auto; background: #181818; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid #282828; }
-    #login-box h1 { margin: 0 0 5px 0; color: #ff4655; font-size: 28px; }
-    #login-box p.subtitle { color: #888; margin: 0 0 20px 0; font-size: 14px; }
-    input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 15px; border-radius: 6px; border: none; outline: none; }
-    input { background: #252525; color: white; border: 1px solid #383838; }
-    button { background: #ff4655; color: white; cursor: pointer; font-weight: bold; }
+    #login-box { max-width: 340px; margin: 18vh auto; background: #18181b; padding: 30px; border-radius: 12px; text-align: center; border: 1px solid #27272a; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+    #login-box h1 { margin: 0 0 6px 0; color: #ff4655; font-size: 24px; }
+    #login-box p.subtitle { color: #a1a1aa; margin: 0 0 20px 0; font-size: 13px; }
+    input, button { width: 100%; padding: 12px; margin-top: 10px; font-size: 15px; border-radius: 8px; border: none; outline: none; }
+    input { background: #27272a; color: white; border: 1px solid #3f3f46; }
+    button { background: #ff4655; color: white; cursor: pointer; font-weight: 600; transition: opacity 0.2s; }
+    button:active { opacity: 0.8; }
 
-    /* Header & Navigation */
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #252525; padding-bottom: 15px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-    .logo-container { display: flex; flex-direction: column; }
-    .logo { font-size: 22px; font-weight: bold; color: #ff4655; }
-    .byline { font-size: 12px; color: #888; margin-top: 2px; }
-    .nav { display: flex; gap: 10px; }
-    .nav button { width: auto; padding: 8px 18px; background: #202020; margin: 0; border: 1px solid #303030; }
-    .nav button.active { background: #ff4655; border-color: #ff4655; }
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #27272a; padding-bottom: 12px; margin-bottom: 16px; }
+    .logo { font-size: 20px; font-weight: 700; color: #ff4655; }
+    .byline { font-size: 11px; color: #a1a1aa; }
+    .nav { display: flex; gap: 8px; }
+    .nav button { width: auto; padding: 6px 14px; background: #27272a; font-size: 13px; margin: 0; }
+    .nav button.active { background: #ff4655; }
 
     /* Search Bar */
-    .search-container { margin-bottom: 20px; }
-    .search-container input { width: 100%; background: #181818; border: 1px solid #303030; padding: 14px 16px; border-radius: 8px; color: white; font-size: 15px; }
+    .search-box { margin-bottom: 16px; }
+    .search-box input { width: 100%; background: #18181b; border: 1px solid #27272a; padding: 12px 14px; border-radius: 8px; color: white; font-size: 14px; }
 
-    /* Grid Layout */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
-    .card { background: #181818; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #282828; transition: transform 0.2s, border-color 0.2s; }
-    .card:hover { transform: translateY(-4px); border-color: #ff4655; }
-    .card img { width: 100%; height: 210px; object-fit: cover; }
-    .card p { padding: 10px; margin: 0; font-size: 14px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .card { background: #18181b; border-radius: 8px; overflow: hidden; cursor: pointer; border: 1px solid #27272a; }
+    .card img { width: 100%; height: 190px; object-fit: cover; display: block; }
+    .card p { padding: 10px 8px; margin: 0; font-size: 13px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* ADVANCED VIDEO PLAYER MODAL */
-    #player-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.96); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
-    .player-container { width: 100%; max-width: 960px; background: #121212; border-radius: 10px; overflow: hidden; border: 1px solid #282828; box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; }
+    /* Embedded Video Player Modal (Netmirror Style) */
+    #player-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.98); display: flex; flex-direction: column; z-index: 9999; }
+    .player-topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: #121214; border-bottom: 1px solid #27272a; }
+    .player-topbar h3 { margin: 0; color: #ff4655; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80%; }
+    .close-btn { background: #ff4655; border: none; color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    .video-container { width: 100%; flex-grow: 1; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+    #video-stream { width: 100%; max-height: 70vh; background: #000; display: block; outline: none; }
+
+    .player-toolbar { background: #121214; border-top: 1px solid #27272a; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .toolbar-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .tool-group { display: flex; align-items: center; gap: 6px; }
+    .tool-label { font-size: 11px; color: #a1a1aa; font-weight: 700; text-transform: uppercase; }
     
-    .player-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #181818; border-bottom: 1px solid #252525; }
-    .player-header h3 { margin: 0; color: #ff4655; font-size: 18px; }
-    .close-btn { background: #ff4655; border: none; color: white; font-size: 16px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-
-    .video-wrapper { position: relative; width: 100%; background: #000; }
-    #video-stream { width: 100%; max-height: 60vh; display: block; }
-
-    /* Custom Player Control Panel */
-    .player-controls { padding: 15px 20px; background: #181818; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid #252525; }
-    .controls-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    
-    .control-group { display: flex; align-items: center; gap: 8px; }
-    .control-label { font-size: 12px; color: #aaa; font-weight: bold; text-transform: uppercase; margin-right: 4px; }
-    
-    .option-btn { background: #252525; color: white; border: 1px solid #383838; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 13px; width: auto; margin: 0; transition: background 0.2s; }
-    .option-btn.active { background: #ff4655; border-color: #ff4655; }
-    select.option-btn { padding-right: 20px; }
+    .chip { background: #27272a; color: white; border: 1px solid #3f3f46; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; width: auto; margin: 0; }
+    .chip.active { background: #ff4655; border-color: #ff4655; }
+    select.chip { padding-right: 20px; }
   </style>
 </head>
 <body>
 
-  <!-- LOGIN SCREEN -->
+  <!-- LOGIN -->
   <div id="login-box">
     <h1>Crunchyflix School</h1>
     <p class="subtitle">-by Daksh Sharma</p>
-    <input type="password" id="passcode" placeholder="Enter Passcode">
+    <input type="password" id="passcode" placeholder="Enter Passcode (Daksh 528)">
     <button onclick="unlockApp()">Enter</button>
   </div>
 
   <!-- MAIN APP -->
   <div id="app" class="hidden">
     <div class="header">
-      <div class="logo-container">
-        <span class="logo">Crunchyflix School</span>
-        <span class="byline">-by Daksh Sharma</span>
+      <div>
+        <div class="logo">Crunchyflix School</div>
+        <div class="byline">-by Daksh Sharma</div>
       </div>
       <div class="nav">
         <button id="btn-movies" class="active" onclick="switchTab('movies')">Movies</button>
@@ -83,95 +78,77 @@
       </div>
     </div>
 
-    <!-- SEARCH BAR -->
-    <div class="search-container">
+    <div class="search-box">
       <input type="text" id="search-input" placeholder="Search movies..." oninput="filterContent()">
     </div>
 
-    <!-- MOVIES SECTION -->
+    <!-- MOVIES -->
     <div id="movies-section" class="grid">
       <div class="card" onclick="openPlayer('Spider-Man: Across the Spider-Verse', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Movie">
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500" alt="Spider-Man">
         <p>Spider-Man: Spider-Verse</p>
       </div>
       <div class="card" onclick="openPlayer('Avengers: Endgame', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Movie">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Avengers">
         <p>Avengers: Endgame</p>
-      </div>
-      <div class="card" onclick="openPlayer('Interstellar', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500" alt="Movie">
-        <p>Interstellar</p>
       </div>
     </div>
 
-    <!-- ANIME SECTION -->
+    <!-- ANIME -->
     <div id="anime-section" class="grid hidden">
-      <div class="card" onclick="openPlayer('Demon Slayer: Kimetsu no Yaiba S4', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
-        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Anime">
+      <div class="card" onclick="openPlayer('Demon Slayer S4 Ep 1', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4')">
+        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500" alt="Demon Slayer">
         <p>Demon Slayer S4 Ep 1</p>
       </div>
-      <div class="card" onclick="openPlayer('Jujutsu Kaisen Season 2', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
-        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" alt="Anime">
+      <div class="card" onclick="openPlayer('Jujutsu Kaisen S2 Ep 1', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4')">
+        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500" alt="Jujutsu Kaisen">
         <p>Jujutsu Kaisen S2 Ep 1</p>
-      </div>
-      <div class="card" onclick="openPlayer('Attack on Titan Final Season', 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4')">
-        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=500" alt="Anime">
-        <p>Attack on Titan Final Ep</p>
       </div>
     </div>
   </div>
 
-  <!-- ADVANCED VIDEO PLAYER MODAL -->
+  <!-- PLAYER MODAL -->
   <div id="player-modal" class="hidden">
-    <div class="player-container">
-      <div class="player-header">
-        <h3 id="player-title">Now Playing</h3>
-        <button class="close-btn" onclick="closePlayer()">✕</button>
-      </div>
-      
-      <div class="video-wrapper">
-        <video id="video-stream" controls autoplay preload="auto"></video>
-      </div>
+    <div class="player-topbar">
+      <h3 id="player-title">Streaming</h3>
+      <button class="close-btn" onclick="closePlayer()">✕</button>
+    </div>
+    
+    <div class="video-container">
+      <video id="video-stream" controls autoplay playsinline preload="auto"></video>
+    </div>
 
-      <div class="player-controls">
-        <!-- Audio & Subtitles Selector -->
-        <div class="controls-row">
-          <div class="control-group">
-            <span class="control-label">Audio / Sub:</span>
-            <button id="btn-sub" class="option-btn active" onclick="setAudio('sub')">JPN Sub</button>
-            <button id="btn-dub-en" class="option-btn" onclick="setAudio('dub-en')">ENG Dub</button>
-            <button id="btn-dub-hi" class="option-btn" onclick="setAudio('dub-hi')">HIN Dub</button>
-          </div>
-
-          <!-- Quality Selector -->
-          <div class="control-group">
-            <span class="control-label">Quality:</span>
-            <select id="quality-select" class="option-btn" onchange="changeQuality(this.value)">
-              <option value="1080p" selected>1080p HD</option>
-              <option value="720p">720p</option>
-              <option value="480p">480p</option>
-              <option value="360p">360p</option>
-            </select>
-          </div>
+    <div class="player-toolbar">
+      <div class="toolbar-row">
+        <div class="tool-group">
+          <span class="tool-label">Audio:</span>
+          <button id="btn-sub" class="chip active" onclick="setAudio('sub')">JPN Sub</button>
+          <button id="btn-dub-en" class="chip" onclick="setAudio('dub-en')">ENG Dub</button>
+          <button id="btn-dub-hi" class="chip" onclick="setAudio('dub-hi')">HIN Dub</button>
         </div>
-
-        <!-- Speed & Playback Controls -->
-        <div class="controls-row">
-          <div class="control-group">
-            <span class="control-label">Controls:</span>
-            <button class="option-btn" onclick="skipTime(-10)">-10s</button>
-            <button class="option-btn" onclick="skipTime(10)">+10s</button>
-          </div>
-
-          <div class="control-group">
-            <span class="control-label">Speed:</span>
-            <select class="option-btn" onchange="changeSpeed(this.value)">
-              <option value="1">1.0x</option>
-              <option value="1.25">1.25x</option>
-              <option value="1.5">1.5x</option>
-              <option value="2">2.0x</option>
-            </select>
-          </div>
+        <div class="tool-group">
+          <span class="tool-label">Quality:</span>
+          <select class="chip" onchange="changeQuality(this.value)">
+            <option value="1080">1080p HD</option>
+            <option value="720" selected>720p</option>
+            <option value="480">480p</option>
+          </select>
+        </div>
+      </div>
+      <div class="toolbar-row">
+        <div class="tool-group">
+          <span class="tool-label">Skip:</span>
+          <button class="chip" onclick="skip(-10)">-10s</button>
+          <button class="chip" onclick="skip(10)">+10s</button>
+        </div>
+        <div class="tool-group">
+          <span class="tool-label">Speed:</span>
+          <select class="chip" onchange="setSpeed(this.value)">
+            <option value="1">1.0x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2.0x</option>
+          </select>
         </div>
       </div>
     </div>
@@ -186,32 +163,31 @@
         document.getElementById('login-box').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
       } else {
-        alert('Incorrect password!');
+        alert('Incorrect passcode!');
       }
     }
 
     function switchTab(tab) {
       currentTab = tab;
-      const isMovies = tab === 'movies';
-      document.getElementById('movies-section').classList.toggle('hidden', !isMovies);
-      document.getElementById('anime-section').classList.toggle('hidden', isMovies);
-      document.getElementById('btn-movies').classList.toggle('active', isMovies);
-      document.getElementById('btn-anime').classList.toggle('active', !isMovies);
+      const isMov = tab === 'movies';
+      document.getElementById('movies-section').classList.toggle('hidden', !isMov);
+      document.getElementById('anime-section').classList.toggle('hidden', isMov);
+      document.getElementById('btn-movies').classList.toggle('active', isMov);
+      document.getElementById('btn-anime').classList.toggle('active', !isMov);
       
-      const searchInput = document.getElementById('search-input');
-      searchInput.placeholder = isMovies ? 'Search movies...' : 'Search anime...';
-      searchInput.value = '';
+      const sInput = document.getElementById('search-input');
+      sInput.placeholder = isMov ? 'Search movies...' : 'Search anime...';
+      sInput.value = '';
       filterContent();
     }
 
     function filterContent() {
       const query = document.getElementById('search-input').value.toLowerCase();
-      const sectionId = currentTab === 'movies' ? 'movies-section' : 'anime-section';
-      const cards = document.getElementById(sectionId).getElementsByClassName('card');
-      
-      for (let card of cards) {
-        const title = card.getElementsByTagName('p')[0].innerText.toLowerCase();
-        card.style.display = title.includes(query) ? "" : "none";
+      const activeSec = currentTab === 'movies' ? 'movies-section' : 'anime-section';
+      const cards = document.getElementById(activeSec).getElementsByClassName('card');
+      for (let c of cards) {
+        const title = c.getElementsByTagName('p')[0].innerText.toLowerCase();
+        c.style.display = title.includes(query) ? '' : 'none';
       }
     }
 
@@ -221,42 +197,34 @@
       const video = document.getElementById('video-stream');
       video.src = url;
       modal.classList.remove('hidden');
-      video.play().catch(e => console.log('Autoplay blocked:', e));
-    }
-
-    function setAudio(type) {
-      document.getElementById('btn-sub').classList.remove('active');
-      document.getElementById('btn-dub-en').classList.remove('active');
-      document.getElementById('btn-dub-hi').classList.remove('active');
-      
-      if(type === 'sub') document.getElementById('btn-sub').classList.add('active');
-      if(type === 'dub-en') document.getElementById('btn-dub-en').classList.add('active');
-      if(type === 'dub-hi') document.getElementById('btn-dub-hi').classList.add('active');
-    }
-
-    function changeQuality(quality) {
-      const video = document.getElementById('video-stream');
-      const currentTime = video.currentTime;
-      // Re-trigger playback position seamlessly on quality change
-      video.currentTime = currentTime;
-    }
-
-    function skipTime(seconds) {
-      const video = document.getElementById('video-stream');
-      video.currentTime += seconds;
-    }
-
-    function changeSpeed(speed) {
-      const video = document.getElementById('video-stream');
-      video.playbackRate = parseFloat(speed);
+      video.play().catch(e => console.log(e));
     }
 
     function closePlayer() {
       const modal = document.getElementById('player-modal');
       const video = document.getElementById('video-stream');
       video.pause();
-      video.src = "";
+      video.src = '';
       modal.classList.add('hidden');
+    }
+
+    function setAudio(type) {
+      ['btn-sub', 'btn-dub-en', 'btn-dub-hi'].forEach(id => document.getElementById(id).classList.remove('active'));
+      document.getElementById('btn-' + type).classList.add('active');
+    }
+
+    function changeQuality(q) {
+      console.log('Quality set to:', q);
+    }
+
+    function skip(sec) {
+      const video = document.getElementById('video-stream');
+      video.currentTime += sec;
+    }
+
+    function setSpeed(spd) {
+      const video = document.getElementById('video-stream');
+      video.playbackRate = parseFloat(spd);
     }
   </script>
 </body>
