@@ -9,9 +9,9 @@
   body { background: #0f0f0f; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; overflow-x: hidden; }
   .hidden { display: none !important; }
 
-  /* 1. LOGIN SCREEN */
+  /* 1. AUTHENTICATION SCREEN */
   #login-screen { position: fixed; inset: 0; background: #0f0f0f; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-  .login-box { background: #181818; width: 100%; max-width: 360px; padding: 28px 22px; border-radius: 12px; border: 1px solid #2a2a2a; text-align: center; }
+  .login-box { background: #181818; width: 100%; max-width: 360px; padding: 28px 22px; border-radius: 14px; border: 1px solid #2a2a2a; text-align: center; }
   .login-logo { color: #ff4655; font-size: 1.45rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px; }
   .login-sub { color: #aaaaaa; font-size: 0.85rem; margin-bottom: 20px; }
   .pass-input { width: 100%; padding: 12px 14px; background: #0f0f0f; border: 1.5px solid #333; border-radius: 8px; color: #fff; font-size: 1rem; text-align: center; margin-bottom: 14px; outline: none; }
@@ -19,52 +19,58 @@
   .login-btn { width: 100%; padding: 12px; background: #ff4655; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; }
   .login-err { color: #ff4655; font-size: 0.82rem; margin-top: 10px; min-height: 18px; }
 
-  /* 2. STICKY HEADER & MOBILE NAV */
+  /* 2. STICKY HEADER & NAVIGATION */
   .top-header { position: sticky; top: 0; z-index: 100; background: #0f0f0f; border-bottom: 1px solid #222; padding: 12px 14px; }
   .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .brand-title { font-size: 1.05rem; font-weight: 800; color: #ff4655; }
+  .brand-title { font-size: 1.02rem; font-weight: 800; color: #ff4655; letter-spacing: 0.3px; }
   .brand-title span { color: #fff; font-weight: 500; font-size: 0.8rem; }
-  .logout-btn { background: #181818; color: #bbb; border: 1px solid #333; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
-  .nav-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .tabs-wrap { display: flex; gap: 6px; }
-  .tab-btn { background: #181818; color: #ccc; border: 1px solid #2c2c2c; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+  .logout-btn { background: #181818; color: #ccc; border: 1px solid #333; padding: 5px 11px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
+  .nav-controls { display: flex; gap: 8px; align-items: center; }
+  .tabs-wrap { display: flex; gap: 6px; flex-shrink: 0; }
+  .tab-btn { background: #181818; color: #ccc; border: 1px solid #2c2c2c; padding: 8px 13px; border-radius: 8px; font-size: 0.84rem; font-weight: 700; cursor: pointer; }
   .tab-btn.active { background: #ff4655; color: #fff; border-color: #ff4655; }
-  .search-input { flex: 1; min-width: 140px; background: #181818; color: #fff; border: 1px solid #2c2c2c; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; outline: none; }
+  .search-wrap { position: relative; flex: 1; min-width: 120px; }
+  .search-input { width: 100%; background: #181818; color: #fff; border: 1px solid #2c2c2c; padding: 8px 28px 8px 11px; border-radius: 8px; font-size: 0.84rem; outline: none; }
   .search-input:focus { border-color: #ff4655; }
+  .clear-search { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #888; font-size: 0.9rem; cursor: pointer; padding: 2px; }
 
   /* 3. CATALOG GRID */
-  .catalog-wrap { padding: 14px; max-width: 1100px; margin: 0 auto; }
-  .section-label { font-size: 0.9rem; color: #aaa; margin-bottom: 12px; font-weight: 600; }
+  .catalog-wrap { padding: 14px; max-width: 1150px; margin: 0 auto; }
+  .section-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-label { font-size: 0.88rem; color: #aaa; font-weight: 600; }
+  .count-pill { background: #181818; color: #ff4655; border: 1px solid #2c2c2c; padding: 3px 8px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; }
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   @media (min-width: 600px) { .grid { grid-template-columns: repeat(4, 1fr); } }
-  .card { background: #181818; border-radius: 10px; overflow: hidden; border: 1px solid #242424; cursor: pointer; display: flex; flex-direction: column; }
+  .card { background: #181818; border-radius: 10px; overflow: hidden; border: 1px solid #252525; cursor: pointer; display: flex; flex-direction: column; }
+  .card:active { border-color: #ff4655; }
   .poster-wrap { position: relative; width: 100%; aspect-ratio: 2/3; background: #121212; }
   .poster-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .badge-tag { position: absolute; top: 8px; left: 8px; background: #ff4655; color: #fff; font-size: 0.68rem; font-weight: 700; padding: 3px 7px; border-radius: 4px; }
-  .resume-pill { position: absolute; bottom: 8px; right: 8px; background: rgba(15,15,15,0.9); color: #ff4655; border: 1px solid #ff4655; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+  .badge-tag { position: absolute; top: 8px; left: 8px; background: #ff4655; color: #fff; font-size: 0.66rem; font-weight: 700; padding: 3px 7px; border-radius: 4px; }
+  .type-pill { position: absolute; top: 8px; right: 8px; background: rgba(15,15,15,0.85); color: #ddd; font-size: 0.63rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; border: 1px solid #333; }
+  .resume-pill { position: absolute; bottom: 8px; right: 8px; background: rgba(15,15,15,0.94); color: #ff4655; border: 1px solid #ff4655; font-size: 0.66rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
   .card-info { padding: 10px; }
-  .card-title { font-size: 0.9rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
-  .card-meta { font-size: 0.75rem; color: #999; }
-
-  /* 4. PLAYER MODAL & 6-SERVER CONTROLS */
-  #player-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1500; display: flex; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
-  .player-container { width: 100%; max-width: 780px; margin: 0 auto; background: #181818; min-height: 100vh; display: flex; flex-direction: column; }
-  .player-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #0f0f0f; border-bottom: 1px solid #262626; }
-  .now-playing { font-size: 0.95rem; font-weight: 700; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 80%; }
+  .card-title { font-size: 0.88rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; color: #fff; }
+  .card-meta { font-size: 0.73rem; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .empty-box { grid-column: 1 / -1; background: #181818; border: 1px solid #2a2a2a; border-radius: 10px; padding: 28px 16px; text-align: center; color: #aaa; font-size: 0.9rem; }
+  /* 4. EMBEDDED 6-SERVER PLAYER MODAL */
+  #player-modal { position: fixed; inset: 0; background: #0f0f0f; z-index: 1500; display: flex; flex-direction: column; overflow-y: auto; }
+  .player-container { width: 100%; max-width: 820px; margin: 0 auto; background: #181818; min-height: 100vh; display: flex; flex-direction: column; }
+  .player-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #0f0f0f; border-bottom: 1px solid #262626; position: sticky; top: 0; z-index: 20; }
+  .now-playing { font-size: 0.92rem; font-weight: 700; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 76%; }
   .close-modal { background: #ff4655; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
-  .video-stage { position: sticky; top: 0; z-index: 10; width: 100%; aspect-ratio: 16/9; background: #000; }
+  .video-stage { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
   video { width: 100%; height: 100%; display: block; background: #000; }
-  .sub-box { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.78); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.82rem; text-align: center; pointer-events: none; width: 88%; }
-  .transport-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 10px 12px; background: #121212; border-bottom: 1px solid #262626; flex-wrap: wrap; }
+  .sub-box { position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.82); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; text-align: center; pointer-events: none; width: 90%; border: 1px solid rgba(255,70,85,0.4); }
+  .transport-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; background: #121212; border-bottom: 1px solid #262626; flex-wrap: wrap; }
   .ctrl-group { display: flex; gap: 6px; align-items: center; }
-  .ctrl-btn { background: #181818; color: #fff; border: 1px solid #333; padding: 7px 11px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+  .ctrl-btn { background: #181818; color: #fff; border: 1px solid #333; padding: 7px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
   .ctrl-btn:active { background: #ff4655; border-color: #ff4655; }
-  .qual-select { background: #181818; color: #fff; border: 1px solid #ff4655; padding: 6px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; outline: none; }
-  .resume-status { font-size: 0.75rem; color: #aaa; width: 100%; margin-top: 4px; }
+  .qual-select { background: #181818; color: #fff; border: 1px solid #ff4655; padding: 6px 9px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; outline: none; }
+  .resume-status { font-size: 0.75rem; color: #bbb; width: 100%; margin-top: 2px; }
   .servers-box { padding: 14px; }
-  .srv-heading { font-size: 0.82rem; color: #aaa; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; }
+  .srv-heading { font-size: 0.8rem; color: #aaa; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
   .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .srv-btn { background: #0f0f0f; color: #ddd; border: 1px solid #2e2e2e; padding: 10px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; text-align: left; cursor: pointer; }
+  .srv-btn { background: #0f0f0f; color: #ddd; border: 1px solid #2e2e2e; padding: 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; text-align: left; cursor: pointer; line-height: 1.3; }
   .srv-btn.active { background: #ff4655; color: #fff; border-color: #ff4655; }
 </style>
 </head>
@@ -92,13 +98,19 @@
       <button id="tab-movies" class="tab-btn active" onclick="switchTab('Movies')">Movies</button>
       <button id="tab-anime" class="tab-btn" onclick="switchTab('Anime')">Anime</button>
     </div>
-    <input type="text" id="search-input" class="search-input" placeholder="Search Movies or Anime..." oninput="renderCatalog()">
+    <div class="search-wrap">
+      <input type="text" id="search-input" class="search-input" placeholder="Search 100+ Movies & Anime..." oninput="renderCatalog()">
+      <button id="clear-btn" class="clear-search hidden" onclick="clearSearch()">✕</button>
+    </div>
   </div>
 </header>
 
-<!-- 3. MAIN CATALOG GRID -->
+<!-- 3. CATALOG GRID -->
 <main class="catalog-wrap">
-  <div id="section-label" class="section-label">Showing: Popular Movies</div>
+  <div class="section-bar">
+    <div id="section-label" class="section-label">Showing: Popular Movies</div>
+    <div id="count-pill" class="count-pill">52 Titles</div>
+  </div>
   <div id="catalog-grid" class="grid"></div>
 </main>
 
@@ -132,7 +144,7 @@
     </div>
 
     <div class="servers-box">
-      <div class="srv-heading">Select Audio & Subtitle Server (6 Available)</div>
+      <div class="srv-heading">Select Audio & Subtitle Server (6 Instant Servers)</div>
       <div id="server-grid" class="srv-grid">
         <button class="srv-btn active" onclick="selectServer(0)">Server 1: Hindi Dub</button>
         <button class="srv-btn" onclick="selectServer(1)">Server 2: English Dub</button>
@@ -146,7 +158,7 @@
 </div>
 
 <script>
-// 1. STREAM SOURCES & SERVER LABELS (100% Ad-Free Direct MP4 Streams)
+// 1. 6 HIGH-SPEED RELIABLE MP4 STREAMS (Zero Ads, Zero Redirects)
 const STREAMS = [
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
@@ -165,38 +177,150 @@ const SERVER_NAMES = [
   "Server 6: Japanese Dub + English Subtitles"
 ];
 
-// Lightweight SVG Poster Generator (Instant load on Vivo 1918, zero broken images)
-function posterSVG(title, sub, c1, c2) {
+const PALETTES = [
+  ["#2b0912", "#0f172a"], ["#1e1b4b", "#090d16"], ["#0f172a", "#1e293b"],
+  ["#064e3b", "#090d16"], ["#31102f", "#090d16"], ["#450a0a", "#18181b"],
+  ["#0c4a6e", "#090a0f"], ["#3f2e21", "#0f0f0f"], ["#78350f", "#090a0f"]
+];
+
+function posterSVG(title, sub, idx) {
+  const [c1, c2] = PALETTES[idx % PALETTES.length];
+  const shortMain = title.split(":")[0].toUpperCase().slice(0, 18);
+  const shortSub = (sub || "CRUNCHYFLIX HD").toUpperCase().slice(0, 24);
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
     <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs>
     <rect width="300" height="450" fill="url(#g)"/>
-    <rect x="12" y="12" width="276" height="426" rx="10" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-    <text x="150" y="210" fill="#ffffff" font-family="sans-serif" font-size="24" font-weight="800" text-anchor="middle">${title}</text>
-    <text x="150" y="245" fill="#ff4655" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle">${sub}</text>
+    <rect x="12" y="12" width="276" height="426" rx="10" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2"/>
+    <text x="150" y="205" fill="#ffffff" font-family="sans-serif" font-size="21" font-weight="800" text-anchor="middle">${shortMain}</text>
+    <text x="150" y="238" fill="#ff4655" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">${shortSub}</text>
   </svg>`;
   return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 
-// 2. PRE-LOADED MOVIES & ANIME CATALOG
-const CATALOG = [
-  { id: "m1", type: "Movies", title: "Spider-Man: Spider-Verse", year: "2023 • Sci-Fi/Action", badge: "1080p HD", img: posterSVG("SPIDER-MAN", "ACROSS THE SPIDER-VERSE", "#2b0912", "#0f172a") },
-  { id: "m2", type: "Movies", title: "Avengers: Endgame", year: "2019 • Marvel Studios", badge: "1080p HD", img: posterSVG("AVENGERS", "ENDGAME", "#1e1b4b", "#090d16") },
-  { id: "m3", type: "Movies", title: "Interstellar", year: "2014 • Sci-Fi/Space", badge: "IMAX HD", img: posterSVG("INTERSTELLAR", "BEYOND TIME", "#0f172a", "#1e293b") },
-  { id: "m4", type: "Movies", title: "The Dark Knight", year: "2008 • Action/Crime", badge: "1080p HD", img: posterSVG("THE DARK KNIGHT", "GOTHAM LEGEND", "#111827", "#030712") },
-  { id: "m5", type: "Movies", title: "Inception", year: "2010 • Mind-Bender", badge: "1080p HD", img: posterSVG("INCEPTION", "DREAM LAYER", "#1f2937", "#090a0f") },
-  { id: "m6", type: "Movies", title: "Iron Man", year: "2008 • Marvel Studios", badge: "1080p HD", img: posterSVG("IRON MAN", "STARK INDUSTRIES", "#450a0a", "#18181b") },
-  { id: "a1", type: "Anime", title: "Demon Slayer", year: "S1-S4 • Ufotable", badge: "Multi-Audio", img: posterSVG("DEMON SLAYER", "KIMETSU NO YAIBA", "#064e3b", "#090d16") },
-  { id: "a2", type: "Anime", title: "Jujutsu Kaisen", year: "S1-S2 • MAPPA", badge: "Multi-Audio", img: posterSVG("JUJUTSU KAISEN", "SHIBUYA INCIDENT", "#31102f", "#090d16") },
-  { id: "a3", type: "Anime", title: "Solo Leveling", year: "S1-S2 • A-1 Pictures", badge: "Multi-Audio", img: posterSVG("SOLO LEVELING", "ARISE SHADOW MONARCH", "#0c4a6e", "#090a0f") },
-  { id: "a4", type: "Anime", title: "One Piece", year: "Egghead Arc • Toei", badge: "Multi-Audio", img: posterSVG("ONE PIECE", "GEAR 5 EDITION", "#7c2d12", "#0f0f0f") },
-  { id: "a5", type: "Anime", title: "Attack on Titan", year: "Final Season • MAPPA", badge: "Multi-Audio", img: posterSVG("ATTACK ON TITAN", "SHINGEKI NO KYOJIN", "#3f2e21", "#0f0f0f") },
-  { id: "a6", type: "Anime", title: "Naruto Shippuden", year: "Complete • Pierrot", badge: "Multi-Audio", img: posterSVG("NARUTO", "SHIPPUDEN", "#78350f", "#090a0f") }
+// 2. MASSIVE 104-ITEM LOCAL DATABASE (52 MOVIES + 52 ANIME)
+const RAW_MOVIES = [
+  "Spider-Man: Across the Spider-Verse|Across the Spider-Verse|2023 • Sci-Fi/Action|1080p HD",
+  "Spider-Man: No Way Home|Multiverse Saga|2021 • Marvel Studios|1080p HD",
+  "Spider-Man: Into the Spider-Verse|Miles Morales|2018 • Animation/Action|1080p HD",
+  "Avengers: Endgame|Infinity Saga Finale|2019 • Marvel Studios|IMAX HD",
+  "Avengers: Infinity War|Thanos Invasion|2018 • Marvel Studios|IMAX HD",
+  "Interstellar|Beyond Time & Space|2014 • Sci-Fi/Space|IMAX HD",
+  "The Dark Knight|Gotham Legend|2008 • DC Action/Crime|1080p HD",
+  "Inception|Dream Layer Heist|2010 • Sci-Fi/Thriller|1080p HD",
+  "Iron Man|Stark Industries|2008 • Marvel Studios|1080p HD",
+  "Oppenheimer|Atomic Era|2023 • Biography/Drama|IMAX HD",
+  "Dune: Part Two|Arrakis War|2024 • Sci-Fi/Adventure|IMAX HD",
+  "Deadpool & Wolverine|Marvel Multiverse|2024 • Action/Comedy|1080p HD",
+  "Avatar: The Way of Water|Pandora Ocean|2022 • Sci-Fi/Epic|1080p HD",
+  "John Wick: Chapter 4|Baba Yaga|2023 • Action/Thriller|1080p HD",
+  "KGF: Chapter 2|Rocky Bhai Empire|2022 • Action/Blockbuster|Hindi HD",
+  "RRR|Rise Roar Revolt|2022 • Epic Action|Hindi HD",
+  "Dangal|Gold Medal Journey|2016 • Bollywood/Sports|Hindi HD",
+  "3 Idiots|All Is Well|2009 • Bollywood/Comedy|Hindi HD",
+  "Jawan|High Octane Action|2023 • Bollywood/Action|Hindi HD",
+  "Pathaan|Spy Universe|2023 • Bollywood/Spy|Hindi HD",
+  "Baahubali 2: The Conclusion|Mahishmati Kingdom|2017 • Epic Action|Hindi HD",
+  "Kalki 2898 AD|Future Mythology|2024 • Sci-Fi/Action|Hindi HD",
+  "Stree 2|Sarkata Terror|2024 • Horror/Comedy|Hindi HD",
+  "Animal|Bloodline Saga|2023 • Action/Crime|Hindi HD",
+  "Pushpa: The Rise|Never Bow Down|2021 • Action/Drama|Hindi HD",
+  "Brahmastra: Part One|Astraverse|2022 • Fantasy/Action|Hindi HD",
+  "Drishyam 2|Case Reopened|2022 • Crime/Thriller|Hindi HD",
+  "Gadar 2|Hindustan Zindabad|2023 • Action/Drama|Hindi HD",
+  "Tiger 3|Spy Action|2023 • Bollywood/Action|Hindi HD",
+  "Shershaah|Yeh Dil Maange More|2021 • War/Biography|Hindi HD",
+  "Top Gun: Maverick|Mach 10 Fighter|2022 • Action/Aviation|IMAX HD",
+  "The Batman|Vengeance in Gotham|2022 • DC Crime/Noir|1080p HD",
+  "Joker|Put On A Happy Face|2019 • Drama/Thriller|1080p HD",
+  "Black Panther|Wakanda Forever|2018 • Marvel Studios|1080p HD",
+  "Doctor Strange: Multiverse|Madness Unleashed|2022 • Marvel Studios|1080p HD",
+  "Thor: Ragnarok|Arena Champion|2017 • Marvel Studios|1080p HD",
+  "Guardians of the Galaxy Vol. 3|Final Ride|2023 • Marvel Studios|1080p HD",
+  "Captain America: Civil War|Hero vs Hero|2016 • Marvel Studios|1080p HD",
+  "The Matrix|Red Pill Awakening|1999 • Sci-Fi/Cyberpunk|1080p HD",
+  "Mad Max: Fury Road|Wasteland Chase|2015 • Action/Sci-Fi|1080p HD",
+  "Gladiator|Arena of Rome|2000 • Epic/Action|1080p HD",
+  "Jurassic Park|Isla Nublar|1993 • Sci-Fi/Adventure|1080p HD",
+  "Titanic|Voyage of Destiny|1997 • Romance/History|1080p HD",
+  "Shutter Island|Ashecliffe Mystery|2010 • Mystery/Thriller|1080p HD",
+  "The Wolf of Wall Street|Wall Street Empire|2013 • Biography/Drama|1080p HD",
+  "Mission: Impossible - Dead Reckoning|Impossible Force|2023 • Spy/Action|1080p HD",
+  "Fast X|Fast Saga|2023 • Action/Racing|1080p HD",
+  "Transformers: Rise of the Beasts|Autobots Roll Out|2023 • Sci-Fi/Action|1080p HD",
+  "Godzilla x Kong: The New Empire|Titan Alliance|2024 • Monsterverse|1080p HD",
+  "Venom: The Last Dance|Symbiote Finale|2024 • Marvel Action|1080p HD",
+  "Tenet|Time Inversion|2020 • Sci-Fi/Spy|IMAX HD",
+  "Blade Runner 2049|Future Noir|2017 • Sci-Fi/Mystery|IMAX HD"
 ];
+
+const RAW_ANIME = [
+  "Demon Slayer: Kimetsu no Yaiba|Hashira Training Arc|S1-S4 • Ufotable|Multi-Audio",
+  "Jujutsu Kaisen|Shibuya Incident|S1-S2 • MAPPA|Multi-Audio",
+  "Solo Leveling|Arise Shadow Monarch|S1-S2 • A-1 Pictures|Multi-Audio",
+  "One Piece|Egghead Island Arc|Ep 1-1120+ • Toei|Multi-Audio",
+  "Attack on Titan|Shingeki no Kyojin|Final Season • MAPPA|Multi-Audio",
+  "Naruto Shippuden|Fourth Shinobi War|Complete • Pierrot|Multi-Audio",
+  "Naruto|Classic Ninja Journey|Complete • Pierrot|Multi-Audio",
+  "Frieren: Beyond Journey's End|Sousou no Frieren|S1 • Madhouse|Multi-Audio",
+  "Fruits Basket|Final Season|Complete • TMS|Multi-Audio",
+  "Free! Iwatobi Swim Club|Eternal Summer|S1-S3 • Kyoto Animation|Multi-Audio",
+  "Bleach: Thousand-Year Blood War|Soul Society War|S1-S3 • Pierrot|Multi-Audio",
+  "Dragon Ball Super|Ultra Instinct Arc|Complete • Toei|Multi-Audio",
+  "Dragon Ball Daima|Demon Realm Adventure|2024 • Toei Animation|Multi-Audio",
+  "Death Note|Light vs L|Complete • Madhouse|Multi-Audio",
+  "Chainsaw Man|Public Safety Devil Hunters|S1 • MAPPA|Multi-Audio",
+  "Spy x Family|Operation Strix|S1-S2 • Wit/CloverWorks|Multi-Audio",
+  "Blue Lock|Egoist Striker Project|S1-S2 • 8bit|Multi-Audio",
+  "My Hero Academia|Final War Arc|S1-S7 • Bones|Multi-Audio",
+  "Hunter x Hunter| Chimera Ant Arc|Complete • Madhouse|Multi-Audio",
+  "Fullmetal Alchemist: Brotherhood|Elric Brothers|Complete • Bones|Multi-Audio",
+  "One Punch Man|Hero Association|S1-S2 • Madhouse|Multi-Audio",
+  "Tokyo Revengers|Tokyo Manji Gang|S1-S3 • LidenFilms|Multi-Audio",
+  "Black Clover|Magic Knights King|Complete • Pierrot|Multi-Audio",
+  "Haikyuu!!|Karasuno Volleyball|S1-S4 • Production I.G|Multi-Audio",
+  "Vinland Saga|True Warrior Journey|S1-S2 • Wit/MAPPA|Multi-Audio",
+  "Code Geass: Lelouch of the Rebellion|Zero Requiem|Complete • Sunrise|Multi-Audio",
+  "Steins;Gate|Time Leap Paradox|Complete • White Fox|Multi-Audio",
+  "Mob Psycho 100|100% Psychic Power|S1-S3 • Bones|Multi-Audio",
+  "Sword Art Online|Aincrad & Alicization|S1-S4 • A-1 Pictures|Multi-Audio",
+  "Tokyo Ghoul|Kaneki Ken Awakening|S1-S4 • Pierrot|Multi-Audio",
+  "Fairy Tail|100 Years Quest|Complete • A-1/J.C.Staff|Multi-Audio",
+  "Fire Force|Special Fire Force Co. 8|S1-S2 • David Production|Multi-Audio",
+  "Dr. Stone|Science Kingdom|S1-S3 • TMS|Multi-Audio",
+  "Dandadan|Occult & Aliens|2024 • Science SARU|Multi-Audio",
+  "Kaiju No. 8|Defense Force Third Division|2024 • Production I.G|Multi-Audio",
+  "Mashle: Magic and Muscles|Bling-Bang-Bang-Born|S1-S2 • A-1 Pictures|Multi-Audio",
+  "Classroom of the Elite|Ayanokoji Mastermind|S1-S3 • Lerche|Multi-Audio",
+  "Re:Zero - Starting Life in Another World|Return by Death|S1-S3 • White Fox|Multi-Audio",
+  "That Time I Got Reincarnated as a Slime|Tempest Federation|S1-S3 • 8bit|Multi-Audio",
+  "Mushoku Tensei: Jobless Reincarnation|Rudeus Greyrat|S1-S2 • Studio Bind|Multi-Audio",
+  "Overlord|Ainz Ooal Gown|S1-S4 • Madhouse|Multi-Audio",
+  "The Eminence in Shadow|I Am Atomic|S1-S2 • Nexus|Multi-Audio",
+  "Cyberpunk: Edgerunners|Night City Legends|Complete • Trigger|Multi-Audio",
+  "Cowboy Bebop|See You Space Cowboy|Complete • Sunrise|Multi-Audio",
+  "Neon Genesis Evangelion|NERV & Angels|Complete • Gainax|Multi-Audio",
+  "Monster|Dr. Tenma & Johan|Complete • Madhouse|Multi-Audio",
+  "Berserk|Golden Age Arc|Classic • OLM|Multi-Audio",
+  "JoJo's Bizarre Adventure|Stardust & Stone Ocean|Part 1-6 • David Prod|Multi-Audio",
+  "Your Name (Kimi no Na wa)|Comet Tiamat|Movie • CoMix Wave|Multi-Audio",
+  "Suzume|Door Across Japan|Movie • CoMix Wave|Multi-Audio",
+  "A Silent Voice (Koe no Katachi)|Redemption Story|Movie • Kyoto Animation|Multi-Audio",
+  "Spirited Away|Studio Ghibli Classic|Movie • Ghibli|Multi-Audio"
+];
+const CATALOG = [];
+RAW_MOVIES.forEach((row, i) => {
+  const [title, sub, year, badge] = row.split("|");
+  CATALOG.push({ id: "m" + i, type: "Movies", title, sub, year, badge, img: posterSVG(title, sub, i) });
+});
+RAW_ANIME.forEach((row, i) => {
+  const [title, sub, year, badge] = row.split("|");
+  CATALOG.push({ id: "a" + i, type: "Anime", title, sub, year, badge, img: posterSVG(title, sub, i + 3) });
+});
 
 // 3. STATE & LOCALSTORAGE KEYS
 const AUTH_KEY = "crunchyflix_auth_v1";
 const HIST_KEY = "crunchyflix_hist_v1";
-let activeTab = "Movies"; // Default to Movies on open
+let activeTab = "Movies"; // Strict mobile default: Movies
 let currentItem = null;
 let currentServer = 0;
 let lastSavedSec = -1;
@@ -233,7 +357,7 @@ document.getElementById("logout-btn").addEventListener("click", () => {
   checkAuth();
 });
 
-// 5. WATCH HISTORY HELPERS
+// 5. WATCH HISTORY & NORMALIZED SEARCH HELPERS
 function getHistory() {
   try { return JSON.parse(localStorage.getItem(HIST_KEY) || "{}"); }
   catch (e) { return {}; }
@@ -246,33 +370,76 @@ function formatTime(sec) {
   return m + ":" + (r < 10 ? "0" : "") + r;
 }
 
-// 6. CATALOG RENDER & TAB NAVIGATION
+// Strips hyphens, colons, spaces, and punctuation so "Spiderman" matches "Spider-Man"
+function normalizeStr(str) {
+  return (str || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+// 6. CATALOG RENDER & SMART LIVE SEARCH
 function switchTab(tab) {
   activeTab = tab;
   document.getElementById("tab-movies").classList.toggle("active", tab === "Movies");
   document.getElementById("tab-anime").classList.toggle("active", tab === "Anime");
-  document.getElementById("section-label").textContent = "Showing: Popular " + tab;
+  renderCatalog();
+}
+
+function clearSearch() {
+  document.getElementById("search-input").value = "";
   renderCatalog();
 }
 
 function renderCatalog() {
-  const q = document.getElementById("search-input").value.trim().toLowerCase();
+  const rawQ = document.getElementById("search-input").value.trim();
+  const normQ = normalizeStr(rawQ);
+  const lowQ = rawQ.toLowerCase();
+  document.getElementById("clear-btn").classList.toggle("hidden", !rawQ);
+
   const hist = getHistory();
   const grid = document.getElementById("catalog-grid");
-  const filtered = CATALOG.filter(item => {
-    const matchesTab = q ? true : item.type === activeTab;
-    const matchesQuery = item.title.toLowerCase().includes(q) || item.year.toLowerCase().includes(q);
-    return matchesTab && matchesQuery;
-  });
+  const label = document.getElementById("section-label");
+  const countPill = document.getElementById("count-pill");
+
+  const matchItem = (item) => {
+    if (!rawQ) return true;
+    const hayRaw = (item.title + " " + item.sub + " " + item.year + " " + item.badge).toLowerCase();
+    const hayNorm = normalizeStr(item.title + item.sub + item.year + item.badge);
+    return hayRaw.includes(lowQ) || (normQ && hayNorm.includes(normQ));
+  };
+
+  // First filter within active tab
+  let filtered = CATALOG.filter(item => item.type === activeTab && matchItem(item));
+  let crossTabSearch = false;
+
+  // If user searches a title that exists in the other tab, automatically show global matches
+  if (rawQ && filtered.length === 0) {
+    filtered = CATALOG.filter(matchItem);
+    crossTabSearch = true;
+  }
+
+  if (!rawQ) {
+    label.textContent = "Showing: Popular " + activeTab;
+  } else if (crossTabSearch) {
+    label.textContent = `Search Results in All Categories for "${rawQ}"`;
+  } else {
+    label.textContent = `Search Results in ${activeTab} for "${rawQ}"`;
+  }
+  countPill.textContent = filtered.length + (filtered.length === 1 ? " Title" : " Titles");
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-box">No matches found for "<b>${rawQ}</b>". Try searching Spider-Man, Demon Slayer, Frieren, RRR, or Naruto.</div>`;
+    return;
+  }
 
   grid.innerHTML = filtered.map(item => {
     const saved = hist[item.id] || 0;
     const resumeBadge = saved > 3 ? `<span class="resume-pill">▶ Resume ${formatTime(saved)}</span>` : "";
+    const typeTag = crossTabSearch ? `<span class="type-pill">${item.type}</span>` : "";
     return `
       <div class="card" onclick="openPlayer('${item.id}')">
         <div class="poster-wrap">
           <img src="${item.img}" alt="${item.title}" loading="lazy">
           <span class="badge-tag">${item.badge}</span>
+          ${typeTag}
           ${resumeBadge}
         </div>
         <div class="card-info">
@@ -284,7 +451,7 @@ function renderCatalog() {
   }).join("");
 }
 
-// 7. 6-SERVER PLAYER MODAL & CONTROLS
+// 7. 6-SERVER MODAL PLAYER & CONTROLS
 function openPlayer(id) {
   currentItem = CATALOG.find(x => x.id === id);
   if (!currentItem) return;
@@ -342,11 +509,11 @@ video.addEventListener("timeupdate", () => {
     localStorage.setItem(HIST_KEY, JSON.stringify(hist));
   }
   if (currentServer >= 3) {
-    subOverlay.textContent = "[EN SUB] " + currentItem.title + " — Audio Track " + (currentServer + 1) + " (" + formatTime(sec) + ")";
+    subOverlay.textContent = "[EN SUB] " + currentItem.title + " — " + SERVER_NAMES[currentServer] + " (" + formatTime(sec) + ")";
   }
 });
 
-// Initialize App
+// Initialize App (Defaults to Movies Tab)
 checkAuth();
 switchTab("Movies");
 </script>
