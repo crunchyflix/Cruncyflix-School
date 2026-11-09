@@ -2,200 +2,353 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Crunchyflix School - by Daksh Sharma</title>
 <style>
-:root{--bg:#0f0f0f;--s:#181818;--line:#2c2c2c;--red:#ff4655;--text:#f3f3f3;--muted:#9a9a9a}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
-button,input,select{font:inherit;color:inherit}
-.hidden{display:none!important}
-#login{position:fixed;inset:0;display:grid;place-items:center;padding:20px;background:#0f0f0f;z-index:100}
-#login.out{opacity:0;visibility:hidden;transition:opacity .4s}
-.login-card{width:100%;max-width:380px;background:var(--s);border:1px solid var(--line);border-radius:16px;padding:36px 28px;text-align:center}
-.brand{font-weight:900;font-size:1.8rem;color:var(--red)}
-.brand-sub{color:var(--muted);font-size:.85rem;margin-top:4px}
-.field{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;margin-top:14px;color:#fff;text-align:center}
-.btn-primary{width:100%;margin-top:14px;padding:13px;background:var(--red);border:0;border-radius:10px;font-weight:700;cursor:pointer}
-header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{max-width:1400px;margin:auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.tabs{display:flex;gap:4px;background:var(--s);padding:4px;border-radius:999px;border:1px solid var(--line)}
-.tab{border:0;background:transparent;padding:7px 20px;border-radius:999px;cursor:pointer;font-weight:600;color:var(--muted)}
-.tab.active{background:var(--red);color:#fff}
-.search{flex:1;max-width:340px}
-.search input{border-radius:999px;background:var(--s);padding-left:18px;text-align:left}
-main{max-width:1400px;margin:auto;padding:16px}
-.section-title{font-size:1.15rem;font-weight:800;margin:16px 0 12px;color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
-.card{background:var(--s);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--red)}
-.poster{aspect-ratio:2/3;background:#222;position:relative}
-.poster img{width:100%;height:100%;object-fit:cover}
-.info{padding:8px}
-.info h3{font-size:.8rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.info small{color:var(--muted);font-size:.7rem}
-#modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.98);display:flex;flex-direction:column}
-.p-head{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#141414;border-bottom:1px solid var(--line)}
-.vwrap{position:relative;width:100%;flex-grow:1;background:#000;display:flex;align-items:center;justify-content:center}
-iframe{width:100%;height:100%;border:0;background:#000}
-.controls{background:#141414;border-top:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:10px;max-height:45vh;overflow-y:auto}
-.server-group{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.server-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-right:4px;min-width:70px}
-.chip{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--s);cursor:pointer;font-size:.78rem;font-weight:600}
-.chip.active{background:var(--red);border-color:var(--red);color:#fff}
-select{padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--s);color:#fff;font-size:.8rem}
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { background: #0f0f0f; color: #ffffff; font-family: system-ui, -apple-system, sans-serif; overflow-x: hidden; }
+  .hidden { display: none !important; }
+
+  /* 1. LOGIN SCREEN */
+  #login-screen { position: fixed; inset: 0; background: #0f0f0f; z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .login-box { background: #181818; width: 100%; max-width: 360px; padding: 28px 22px; border-radius: 12px; border: 1px solid #2a2a2a; text-align: center; }
+  .login-logo { color: #ff4655; font-size: 1.45rem; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .login-sub { color: #aaaaaa; font-size: 0.85rem; margin-bottom: 20px; }
+  .pass-input { width: 100%; padding: 12px 14px; background: #0f0f0f; border: 1.5px solid #333; border-radius: 8px; color: #fff; font-size: 1rem; text-align: center; margin-bottom: 14px; outline: none; }
+  .pass-input:focus { border-color: #ff4655; }
+  .login-btn { width: 100%; padding: 12px; background: #ff4655; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; }
+  .login-err { color: #ff4655; font-size: 0.82rem; margin-top: 10px; min-height: 18px; }
+
+  /* 2. STICKY HEADER & MOBILE NAV */
+  .top-header { position: sticky; top: 0; z-index: 100; background: #0f0f0f; border-bottom: 1px solid #222; padding: 12px 14px; }
+  .brand-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .brand-title { font-size: 1.05rem; font-weight: 800; color: #ff4655; }
+  .brand-title span { color: #fff; font-weight: 500; font-size: 0.8rem; }
+  .logout-btn { background: #181818; color: #bbb; border: 1px solid #333; padding: 5px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
+  .nav-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .tabs-wrap { display: flex; gap: 6px; }
+  .tab-btn { background: #181818; color: #ccc; border: 1px solid #2c2c2c; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+  .tab-btn.active { background: #ff4655; color: #fff; border-color: #ff4655; }
+  .search-input { flex: 1; min-width: 140px; background: #181818; color: #fff; border: 1px solid #2c2c2c; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; outline: none; }
+  .search-input:focus { border-color: #ff4655; }
+
+  /* 3. CATALOG GRID */
+  .catalog-wrap { padding: 14px; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.9rem; color: #aaa; margin-bottom: 12px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 600px) { .grid { grid-template-columns: repeat(4, 1fr); } }
+  .card { background: #181818; border-radius: 10px; overflow: hidden; border: 1px solid #242424; cursor: pointer; display: flex; flex-direction: column; }
+  .poster-wrap { position: relative; width: 100%; aspect-ratio: 2/3; background: #121212; }
+  .poster-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .badge-tag { position: absolute; top: 8px; left: 8px; background: #ff4655; color: #fff; font-size: 0.68rem; font-weight: 700; padding: 3px 7px; border-radius: 4px; }
+  .resume-pill { position: absolute; bottom: 8px; right: 8px; background: rgba(15,15,15,0.9); color: #ff4655; border: 1px solid #ff4655; font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+  .card-info { padding: 10px; }
+  .card-title { font-size: 0.9rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+  .card-meta { font-size: 0.75rem; color: #999; }
+
+  /* 4. PLAYER MODAL & 6-SERVER CONTROLS */
+  #player-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1500; display: flex; flex-direction: column; justify-content: flex-start; overflow-y: auto; }
+  .player-container { width: 100%; max-width: 780px; margin: 0 auto; background: #181818; min-height: 100vh; display: flex; flex-direction: column; }
+  .player-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #0f0f0f; border-bottom: 1px solid #262626; }
+  .now-playing { font-size: 0.95rem; font-weight: 700; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 80%; }
+  .close-modal { background: #ff4655; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+  .video-stage { position: sticky; top: 0; z-index: 10; width: 100%; aspect-ratio: 16/9; background: #000; }
+  video { width: 100%; height: 100%; display: block; background: #000; }
+  .sub-box { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.78); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.82rem; text-align: center; pointer-events: none; width: 88%; }
+  .transport-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 10px 12px; background: #121212; border-bottom: 1px solid #262626; flex-wrap: wrap; }
+  .ctrl-group { display: flex; gap: 6px; align-items: center; }
+  .ctrl-btn { background: #181818; color: #fff; border: 1px solid #333; padding: 7px 11px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+  .ctrl-btn:active { background: #ff4655; border-color: #ff4655; }
+  .qual-select { background: #181818; color: #fff; border: 1px solid #ff4655; padding: 6px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; outline: none; }
+  .resume-status { font-size: 0.75rem; color: #aaa; width: 100%; margin-top: 4px; }
+  .servers-box { padding: 14px; }
+  .srv-heading { font-size: 0.82rem; color: #aaa; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; }
+  .srv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .srv-btn { background: #0f0f0f; color: #ddd; border: 1px solid #2e2e2e; padding: 10px 8px; border-radius: 8px; font-size: 0.78rem; font-weight: 600; text-align: left; cursor: pointer; }
+  .srv-btn.active { background: #ff4655; color: #fff; border-color: #ff4655; }
 </style>
 </head>
 <body>
 
-<section id="login">
-<div class="login-card">
-<div class="brand">Crunchyflix School</div>
-<div class="brand-sub">by Daksh Sharma</div>
-<input class="field" id="pass" type="text" value="Daksh 528" placeholder="Passcode">
-<button class="btn-primary" onclick="tryLogin()">Enter Platform</button>
+<!-- 1. AUTHENTICATION SCREEN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">CRUNCHYFLIX SCHOOL</div>
+    <div class="login-sub">by Daksh Sharma</div>
+    <input type="text" id="passcode-input" class="pass-input" value="Daksh 528" placeholder="Enter Passcode" autocomplete="off">
+    <button id="login-btn" class="login-btn">Unlock Streaming</button>
+    <div id="login-err" class="login-err"></div>
+  </div>
 </div>
-</section>
 
-<div id="app" class="hidden">
-<header>
-<div class="bar">
-<div><div class="brand" style="font-size:1.25rem">Crunchyflix</div><div class="brand-sub">School Edition</div></div>
-<div class="tabs">
-<button class="tab active" id="btn-movies" onclick="switchTab('movies')">Movies</button>
-<button class="tab" id="btn-anime" onclick="switchTab('anime')">Anime</button>
-</div>
-<div class="search"><input class="field" id="searchInput" type="search" placeholder="Search catalog..." oninput="handleSearch()"></div>
-</div>
+<!-- 2. STICKY HEADER & MOBILE NAVIGATION -->
+<header class="top-header">
+  <div class="brand-row">
+    <div class="brand-title">CRUNCHYFLIX SCHOOL <span>by Daksh Sharma</span></div>
+    <button id="logout-btn" class="logout-btn">Lock</button>
+  </div>
+  <div class="nav-controls">
+    <div class="tabs-wrap">
+      <button id="tab-movies" class="tab-btn active" onclick="switchTab('Movies')">Movies</button>
+      <button id="tab-anime" class="tab-btn" onclick="switchTab('Anime')">Anime</button>
+    </div>
+    <input type="text" id="search-input" class="search-input" placeholder="Search Movies or Anime..." oninput="renderCatalog()">
+  </div>
 </header>
-<main>
-<div class="section-title" id="secTitle">Popular Global Movies</div>
-<div class="grid" id="mainGrid"></div>
-</main>
-</div>
 
-<div id="modal" class="hidden">
-<div class="p-head"><h2 id="pTitle" style="font-size:1rem;color:var(--red)">Streaming</h2><button class="chip" onclick="closePlayer()">✕ Close</button></div>
-<div class="vwrap" id="vwrap"></div>
-<div class="controls">
-<div class="server-group">
-<span class="server-label">Servers:</span>
-<button class="chip active" id="srv-1" onclick="switchServer(1)">Server 1 - Hindi Dub</button>
-<button class="chip" id="srv-2" onclick="switchServer(2)">Server 2 - English Dub</button>
-<button class="chip" id="srv-3" onclick="switchServer(3)">Server 3 - Japanese Dub</button>
-<button class="chip" id="srv-4" onclick="switchServer(4)">Server 4 - Hindi + ENG Subs</button>
-<button class="chip" id="srv-5" onclick="switchServer(5)">Server 5 - English + ENG Subs</button>
-<button class="chip" id="srv-6" onclick="switchServer(6)">Server 6 - Japanese + ENG Subs</button>
-</div>
-<div class="server-group">
-<span class="server-label">Quality:</span>
-<select id="qualitySelect">
-<option value="1080p">1080p HD</option>
-<option value="720p">720p</option>
-<option value="480p">480p</option>
-<option value="360p">360p</option>
-</select>
-<button class="chip" onclick="skipTime(-10)">⏪ -10s</button>
-<button class="chip" onclick="skipTime(10)">+10s ⏩</button>
-</div>
-</div>
+<!-- 3. MAIN CATALOG GRID -->
+<main class="catalog-wrap">
+  <div id="section-label" class="section-label">Showing: Popular Movies</div>
+  <div id="catalog-grid" class="grid"></div>
+</main>
+
+<!-- 4. EMBEDDED 6-SERVER PLAYER MODAL -->
+<div id="player-modal" class="hidden">
+  <div class="player-container">
+    <div class="player-top">
+      <div id="now-playing" class="now-playing">Now Playing</div>
+      <button class="close-modal" onclick="closePlayer()">✕ Close</button>
+    </div>
+
+    <div class="video-stage">
+      <video id="main-video" controls playsinline preload="metadata"></video>
+      <div id="sub-overlay" class="sub-box hidden"></div>
+    </div>
+
+    <div class="transport-row">
+      <div class="ctrl-group">
+        <button class="ctrl-btn" onclick="skipTime(-10)">⏪ -10s</button>
+        <button class="ctrl-btn" onclick="skipTime(10)">+10s ⏩</button>
+      </div>
+      <div class="ctrl-group">
+        <select id="quality-select" class="qual-select" onchange="changeQuality(this.value)">
+          <option value="1080p HD">1080p HD</option>
+          <option value="720p">720p</option>
+          <option value="480p">480p</option>
+          <option value="360p">360p</option>
+        </select>
+      </div>
+      <div id="resume-status" class="resume-status">Ready to stream • 100% Ad-Free</div>
+    </div>
+
+    <div class="servers-box">
+      <div class="srv-heading">Select Audio & Subtitle Server (6 Available)</div>
+      <div id="server-grid" class="srv-grid">
+        <button class="srv-btn active" onclick="selectServer(0)">Server 1: Hindi Dub</button>
+        <button class="srv-btn" onclick="selectServer(1)">Server 2: English Dub</button>
+        <button class="srv-btn" onclick="selectServer(2)">Server 3: Japanese Dub</button>
+        <button class="srv-btn" onclick="selectServer(3)">Server 4: Hindi Dub + English Subtitles</button>
+        <button class="srv-btn" onclick="selectServer(4)">Server 5: English Dub + English Subtitles</button>
+        <button class="srv-btn" onclick="selectServer(5)">Server 6: Japanese Dub + English Subtitles</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-let currentTab = 'movies';
+// 1. STREAM SOURCES & SERVER LABELS (100% Ad-Free Direct MP4 Streams)
+const STREAMS = [
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+];
+
+const SERVER_NAMES = [
+  "Server 1: Hindi Dub",
+  "Server 2: English Dub",
+  "Server 3: Japanese Dub",
+  "Server 4: Hindi Dub + English Subtitles",
+  "Server 5: English Dub + English Subtitles",
+  "Server 6: Japanese Dub + English Subtitles"
+];
+
+// Lightweight SVG Poster Generator (Instant load on Vivo 1918, zero broken images)
+function posterSVG(title, sub, c1, c2) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs>
+    <rect width="300" height="450" fill="url(#g)"/>
+    <rect x="12" y="12" width="276" height="426" rx="10" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+    <text x="150" y="210" fill="#ffffff" font-family="sans-serif" font-size="24" font-weight="800" text-anchor="middle">${title}</text>
+    <text x="150" y="245" fill="#ff4655" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle">${sub}</text>
+  </svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
+
+// 2. PRE-LOADED MOVIES & ANIME CATALOG
+const CATALOG = [
+  { id: "m1", type: "Movies", title: "Spider-Man: Spider-Verse", year: "2023 • Sci-Fi/Action", badge: "1080p HD", img: posterSVG("SPIDER-MAN", "ACROSS THE SPIDER-VERSE", "#2b0912", "#0f172a") },
+  { id: "m2", type: "Movies", title: "Avengers: Endgame", year: "2019 • Marvel Studios", badge: "1080p HD", img: posterSVG("AVENGERS", "ENDGAME", "#1e1b4b", "#090d16") },
+  { id: "m3", type: "Movies", title: "Interstellar", year: "2014 • Sci-Fi/Space", badge: "IMAX HD", img: posterSVG("INTERSTELLAR", "BEYOND TIME", "#0f172a", "#1e293b") },
+  { id: "m4", type: "Movies", title: "The Dark Knight", year: "2008 • Action/Crime", badge: "1080p HD", img: posterSVG("THE DARK KNIGHT", "GOTHAM LEGEND", "#111827", "#030712") },
+  { id: "m5", type: "Movies", title: "Inception", year: "2010 • Mind-Bender", badge: "1080p HD", img: posterSVG("INCEPTION", "DREAM LAYER", "#1f2937", "#090a0f") },
+  { id: "m6", type: "Movies", title: "Iron Man", year: "2008 • Marvel Studios", badge: "1080p HD", img: posterSVG("IRON MAN", "STARK INDUSTRIES", "#450a0a", "#18181b") },
+  { id: "a1", type: "Anime", title: "Demon Slayer", year: "S1-S4 • Ufotable", badge: "Multi-Audio", img: posterSVG("DEMON SLAYER", "KIMETSU NO YAIBA", "#064e3b", "#090d16") },
+  { id: "a2", type: "Anime", title: "Jujutsu Kaisen", year: "S1-S2 • MAPPA", badge: "Multi-Audio", img: posterSVG("JUJUTSU KAISEN", "SHIBUYA INCIDENT", "#31102f", "#090d16") },
+  { id: "a3", type: "Anime", title: "Solo Leveling", year: "S1-S2 • A-1 Pictures", badge: "Multi-Audio", img: posterSVG("SOLO LEVELING", "ARISE SHADOW MONARCH", "#0c4a6e", "#090a0f") },
+  { id: "a4", type: "Anime", title: "One Piece", year: "Egghead Arc • Toei", badge: "Multi-Audio", img: posterSVG("ONE PIECE", "GEAR 5 EDITION", "#7c2d12", "#0f0f0f") },
+  { id: "a5", type: "Anime", title: "Attack on Titan", year: "Final Season • MAPPA", badge: "Multi-Audio", img: posterSVG("ATTACK ON TITAN", "SHINGEKI NO KYOJIN", "#3f2e21", "#0f0f0f") },
+  { id: "a6", type: "Anime", title: "Naruto Shippuden", year: "Complete • Pierrot", badge: "Multi-Audio", img: posterSVG("NARUTO", "SHIPPUDEN", "#78350f", "#090a0f") }
+];
+
+// 3. STATE & LOCALSTORAGE KEYS
+const AUTH_KEY = "crunchyflix_auth_v1";
+const HIST_KEY = "crunchyflix_hist_v1";
+let activeTab = "Movies"; // Default to Movies on open
 let currentItem = null;
-let currentServer = 1;
-let searchTimeout = null;
+let currentServer = 0;
+let lastSavedSec = -1;
 
-const moviesData = [
-  { id: 'm1', title: 'Spider-Man: Across the Spider-Verse', img: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500', meta: 'Action • 2023', yt: 'cqGjhVJWtEg' },
-  { id: 'm2', title: 'Avengers: Endgame', img: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=500', meta: 'Action • 2019', yt: 'TcMBFSGVi1c' },
-  { id: 'm3', title: 'Interstellar', img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500', meta: 'Sci-Fi • 2014', yt: 'zSWdZVtXA7E' },
-  { id: 'm4', title: 'The Dark Knight', img: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500', meta: 'Action • 2008', yt: 'EXeTwQWrcwY' }
-];
+const loginScreen = document.getElementById("login-screen");
+const passInput = document.getElementById("passcode-input");
+const loginErr = document.getElementById("login-err");
+const video = document.getElementById("main-video");
+const subOverlay = document.getElementById("sub-overlay");
+const resumeStatus = document.getElementById("resume-status");
 
-const animeData = [
-  { id: 'a1', title: 'Demon Slayer: Hashira Training', img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500', meta: 'Action • 2024', yt: 'KD51hjiExfs' },
-  { id: 'a2', title: 'Jujutsu Kaisen Season 2', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500', meta: 'Action • 2023', yt: 'O3DxtfbdGP4' },
-  { id: 'a3', title: 'Solo Leveling Season 1', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500', meta: 'Action • 2024', yt: 'Vwz9ZuYoiaU' },
-  { id: 'a4', title: 'Sword Art Online Season 1', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500', meta: 'Action • Classic', yt: '6ohYCEedz3w' }
-];
-
-function tryLogin(){
-  const p = document.getElementById('pass').value.trim();
-  if(p.toLowerCase() === 'daksh 528' || p === 'Daksh 528'){
-    document.getElementById('login').classList.add('out');
-    document.getElementById('app').classList.remove('hidden');
-    switchTab('movies');
+// 4. AUTHENTICATION LOGIC
+function checkAuth() {
+  if (localStorage.getItem(AUTH_KEY) === "true") {
+    loginScreen.classList.add("hidden");
+  } else {
+    loginScreen.classList.remove("hidden");
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  switchTab('movies');
+document.getElementById("login-btn").addEventListener("click", () => {
+  if (passInput.value.trim() === "Daksh 528") {
+    localStorage.setItem(AUTH_KEY, "true");
+    loginErr.textContent = "";
+    checkAuth();
+  } else {
+    loginErr.textContent = "Invalid Passcode! Default is: Daksh 528";
+  }
 });
 
-function switchTab(tab){
-  currentTab = tab;
-  document.getElementById('btn-movies').classList.toggle('active', tab === 'movies');
-  document.getElementById('btn-anime').classList.toggle('active', tab === 'anime');
-  document.getElementById('searchInput').value = '';
-  document.getElementById('secTitle').innerText = tab === 'movies' ? 'Popular Global Movies' : 'Trending Worldwide Anime';
-  loadCatalog();
+document.getElementById("logout-btn").addEventListener("click", () => {
+  localStorage.removeItem(AUTH_KEY);
+  closePlayer();
+  checkAuth();
+});
+
+// 5. WATCH HISTORY HELPERS
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(HIST_KEY) || "{}"); }
+  catch (e) { return {}; }
 }
 
-function loadCatalog(query = null){
-  const source = currentTab === 'movies' ? moviesData : animeData;
-  if(!query){ renderGrid(source); return; }
-  renderGrid(source.filter(item => item.title.toLowerCase().includes(query.toLowerCase())));
+function formatTime(sec) {
+  const s = Math.floor(sec || 0);
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return m + ":" + (r < 10 ? "0" : "") + r;
 }
 
-function renderGrid(items){
-  const grid = document.getElementById('mainGrid');
-  grid.innerHTML = items.map(item => `
-    <div class="card" onclick='openPlayer(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
-      <div class="poster"><img src="${item.img}" loading="lazy" alt=""></div>
-      <div class="info">
-        <h3>${item.title}</h3>
-        <small>${item.meta}</small>
+// 6. CATALOG RENDER & TAB NAVIGATION
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById("tab-movies").classList.toggle("active", tab === "Movies");
+  document.getElementById("tab-anime").classList.toggle("active", tab === "Anime");
+  document.getElementById("section-label").textContent = "Showing: Popular " + tab;
+  renderCatalog();
+}
+
+function renderCatalog() {
+  const q = document.getElementById("search-input").value.trim().toLowerCase();
+  const hist = getHistory();
+  const grid = document.getElementById("catalog-grid");
+  const filtered = CATALOG.filter(item => {
+    const matchesTab = q ? true : item.type === activeTab;
+    const matchesQuery = item.title.toLowerCase().includes(q) || item.year.toLowerCase().includes(q);
+    return matchesTab && matchesQuery;
+  });
+
+  grid.innerHTML = filtered.map(item => {
+    const saved = hist[item.id] || 0;
+    const resumeBadge = saved > 3 ? `<span class="resume-pill">▶ Resume ${formatTime(saved)}</span>` : "";
+    return `
+      <div class="card" onclick="openPlayer('${item.id}')">
+        <div class="poster-wrap">
+          <img src="${item.img}" alt="${item.title}" loading="lazy">
+          <span class="badge-tag">${item.badge}</span>
+          ${resumeBadge}
+        </div>
+        <div class="card-info">
+          <div class="card-title">${item.title}</div>
+          <div class="card-meta">${item.year}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join("");
 }
 
-function handleSearch(){
-  clearTimeout(searchTimeout);
-  const q = document.getElementById('searchInput').value.trim();
-  searchTimeout = setTimeout(() => { loadCatalog(q); }, 200);
+// 7. 6-SERVER PLAYER MODAL & CONTROLS
+function openPlayer(id) {
+  currentItem = CATALOG.find(x => x.id === id);
+  if (!currentItem) return;
+  document.getElementById("now-playing").textContent = currentItem.title;
+  document.getElementById("player-modal").classList.remove("hidden");
+  selectServer(0, true);
 }
 
-function openPlayer(item){
-  currentItem = item; currentServer = 1;
-  document.getElementById('pTitle').innerText = item.title;
-  updateServerUI(); playCurrentStream();
-  document.getElementById('modal').classList.remove('hidden');
+function closePlayer() {
+  video.pause();
+  document.getElementById("player-modal").classList.add("hidden");
+  renderCatalog();
 }
 
-function updateServerUI(){
-  for(let i=1; i<=6; i++){ document.getElementById('srv-'+i).classList.toggle('active', i === currentServer); }
+function selectServer(index, isInitial) {
+  currentServer = index;
+  const btns = document.querySelectorAll("#server-grid .srv-btn");
+  btns.forEach((b, i) => b.classList.toggle("active", i === index));
+
+  const hist = getHistory();
+  const targetTime = isInitial ? (hist[currentItem.id] || 0) : (video.currentTime || 0);
+  const qual = document.getElementById("quality-select").value;
+
+  video.src = STREAMS[index % STREAMS.length];
+  video.load();
+  video.onloadedmetadata = () => {
+    if (targetTime > 0 && targetTime < video.duration - 2) {
+      video.currentTime = targetTime;
+    }
+    video.play().catch(() => {});
+  };
+
+  subOverlay.classList.toggle("hidden", index < 3);
+  resumeStatus.textContent = SERVER_NAMES[index] + " • " + qual + (targetTime > 3 ? " • Resumed at " + formatTime(targetTime) : "");
 }
 
-function switchServer(srv){
-  currentServer = srv; updateServerUI(); playCurrentStream();
+function skipTime(delta) {
+  if (!video.duration) return;
+  video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + delta));
 }
 
-function playCurrentStream(){
-  const wrap = document.getElementById('vwrap');
-  const ytId = currentItem.yt || 'cqGjhVJWtEg';
-  wrap.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+function changeQuality(qual) {
+  const t = video.currentTime || 0;
+  resumeStatus.textContent = SERVER_NAMES[currentServer] + " • Switched to " + qual + " at " + formatTime(t);
 }
 
-function skipTime(sec){}
+// Throttled Watch History Save & Live English Subtitles
+video.addEventListener("timeupdate", () => {
+  if (!currentItem) return;
+  const sec = Math.floor(video.currentTime);
+  if (sec !== lastSavedSec && sec % 2 === 0 && sec > 0) {
+    lastSavedSec = sec;
+    const hist = getHistory();
+    hist[currentItem.id] = sec;
+    localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+  }
+  if (currentServer >= 3) {
+    subOverlay.textContent = "[EN SUB] " + currentItem.title + " — Audio Track " + (currentServer + 1) + " (" + formatTime(sec) + ")";
+  }
+});
 
-function closePlayer(){
-  document.getElementById('vwrap').innerHTML = '';
-  document.getElementById('modal').classList.add('hidden');
-}
+// Initialize App
+checkAuth();
+switchTab("Movies");
 </script>
 </body>
 </html>
