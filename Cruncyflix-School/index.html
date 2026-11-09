@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Crunchyflix School - by Daksh Sharma</title>
 <style>
-:root{--bg:#0f0f0f;--s:#181818;--s2:#222;--line:#2c2c2c;--red:#ff4655;--text:#f3f3f3;--muted:#9a9a9a}
+:root{--bg:#0f0f0f;--s:#181818;--red:#ff4655;--text:#f3f3f3;--muted:#9a9a9a}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
-button,input,select{font:inherit;color:inherit}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh}
+button,input{font:inherit;color:inherit}
 .hidden{display:none!important}
 #login{position:fixed;inset:0;display:grid;place-items:center;padding:20px;background:#0f0f0f;z-index:100}
 #login.out{opacity:0;visibility:hidden;transition:opacity .4s}
-.login-card{width:100%;max-width:380px;background:var(--s);border:1px solid var(--line);border-radius:16px;padding:36px 28px;text-align:center}
+.login-card{width:100%;max-width:380px;background:var(--s);border:1px solid #2c2c2c;border-radius:16px;padding:36px 28px;text-align:center}
 .brand{font-weight:900;font-size:1.8rem;color:var(--red)}
 .brand-sub{color:var(--muted);font-size:.85rem;margin-top:4px}
-.field{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;margin-top:14px;color:#fff;text-align:center}
+.field{width:100%;padding:12px 14px;background:var(--bg);border:1px solid #2c2c2c;border-radius:10px;margin-top:14px;color:#fff;text-align:center}
 .btn-primary{width:100%;margin-top:14px;padding:13px;background:var(--red);border:0;border-radius:10px;font-weight:700;cursor:pointer}
-header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.95);border-bottom:1px solid #2c2c2c}
 .bar{max-width:1400px;margin:auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.tabs{display:flex;gap:4px;background:var(--s);padding:4px;border-radius:999px;border:1px solid var(--line)}
+.tabs{display:flex;gap:4px;background:var(--s);padding:4px;border-radius:999px;border:1px solid #2c2c2c}
 .tab{border:0;background:transparent;padding:7px 20px;border-radius:999px;cursor:pointer;font-weight:600;color:var(--muted)}
 .tab.active{background:var(--red);color:#fff}
 .search{flex:1;max-width:340px}
@@ -28,21 +27,20 @@ header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.95);backdrop-f
 main{max-width:1400px;margin:auto;padding:16px}
 .section-title{font-size:1.15rem;font-weight:800;margin:16px 0 12px;color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
-.card{background:var(--s);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--red)}
-.poster{aspect-ratio:2/3;background:#222;position:relative}
+.card{background:var(--s);border:1px solid #2c2c2c;border-radius:10px;overflow:hidden;cursor:pointer}
+.poster{aspect-ratio:2/3;background:#222}
 .poster img{width:100%;height:100%;object-fit:cover}
 .info{padding:8px}
 .info h3{font-size:.8rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .info small{color:var(--muted);font-size:.7rem}
 #modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.98);display:flex;flex-direction:column}
-.p-head{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#141414;border-bottom:1px solid var(--line)}
+.p-head{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#141414;border-bottom:1px solid #2c2c2c}
 .vwrap{position:relative;width:100%;flex-grow:1;background:#000;display:flex;align-items:center;justify-content:center}
 iframe{width:100%;height:100%;border:0;background:#000}
-.controls{background:#141414;border-top:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:10px;max-height:45vh;overflow-y:auto}
+.controls{background:#141414;border-top:1px solid #2c2c2c;padding:12px 16px;display:flex;flex-direction:column;gap:10px}
 .server-group{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.server-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-right:4px;min-width:70px}
-.chip{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--s);cursor:pointer;font-size:.78rem;font-weight:600}
+.server-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-right:4px}
+.chip{padding:6px 12px;border-radius:8px;border:1px solid #2c2c2c;background:var(--s);cursor:pointer;font-size:.78rem;font-weight:600}
 .chip.active{background:var(--red);border-color:var(--red);color:#fff}
 </style>
 </head>
@@ -52,9 +50,8 @@ iframe{width:100%;height:100%;border:0;background:#000}
 <div class="login-card">
 <div class="brand">Crunchyflix School</div>
 <div class="brand-sub">by Daksh Sharma</div>
-<input class="field" id="pass" type="text" value="Daksh 528" placeholder="Passcode">
+<input class="field" id="pass" type="text" value="Daksh 528">
 <button class="btn-primary" onclick="tryLogin()">Enter Platform</button>
-<div id="err" style="color:var(--red);font-size:.82rem;margin-top:10px"></div>
 </div>
 </section>
 
@@ -97,11 +94,18 @@ let currentItem = null;
 let currentServer = 1;
 let searchTimeout = null;
 
-const sampleMovies = [
+const moviesLibrary = [
   { id: 'm1', title: 'Spider-Man: Across the Spider-Verse', img: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500', meta: 'Action • 2023', yt: 'cqGjhVJWtEg' },
   { id: 'm2', title: 'Avengers: Endgame', img: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=500', meta: 'Action • 2019', yt: 'TcMBFSGVi1c' },
   { id: 'm3', title: 'Interstellar', img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500', meta: 'Sci-Fi • 2014', yt: 'zSWdZVtXA7E' },
   { id: 'm4', title: 'The Dark Knight', img: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500', meta: 'Action • 2008', yt: 'EXeTwQWrcwY' }
+];
+
+const animeLibrary = [
+  { id: 'a1', title: 'Demon Slayer: Hashira Training', img: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500', meta: 'Action • 2024', yt: 'KD51hjiExfs' },
+  { id: 'a2', title: 'Jujutsu Kaisen Season 2', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500', meta: 'Action • 2023', yt: 'O3DxtfbdGP4' },
+  { id: 'a3', title: 'Solo Leveling Season 1', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500', meta: 'Action • 2024', yt: 'Vwz9ZuYoiaU' },
+  { id: 'a4', title: 'One Piece', img: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500', meta: 'Adventure', yt: 'A_ngTQyDPw0' }
 ];
 
 function tryLogin(){
@@ -111,8 +115,6 @@ function tryLogin(){
     document.getElementById('login').classList.add('out');
     document.getElementById('app').classList.remove('hidden');
     switchTab('movies');
-  } else {
-    document.getElementById('err').textContent = 'Incorrect passcode!';
   }
 }
 
@@ -133,57 +135,11 @@ function switchTab(tab){
   loadCatalog();
 }
 
-async function loadCatalog(query = null){
+function loadCatalog(query = null){
   const grid = document.getElementById('mainGrid');
-  grid.innerHTML = '<p style="color:var(--muted)">Loading catalog...</p>';
-  
-  if(currentTab === 'anime'){
-    const gql = `
-      query ($search: String) {
-        Page(page: 1, perPage: 40) {
-          media(type: ANIME, search: $search, sort: [TRENDING_DESC]) {
-            id title { english romaji } coverImage { extraLarge } episodes trailer { id site }
-          }
-        }
-      }`;
-    try {
-      const res = await fetch('https://graphql.anilist.co', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ query: gql, variables: { search: query } })
-      });
-      const data = await res.json();
-      renderGrid(data.data.Page.media.map(m => ({
-        id: m.id,
-        title: m.title.english || m.title.romaji,
-        img: m.coverImage.extraLarge,
-        meta: m.episodes ? m.episodes + ' Episodes' : 'Anime Series',
-        yt: m.trailer && m.trailer.site === 'youtube' ? m.trailer.id : 'cqGjhVJWtEg'
-      })));
-    } catch(e) {
-      grid.innerHTML = '<p style="color:var(--red)">Failed to load anime catalog.</p>';
-    }
-  } else {
-    const term = query || 'action';
-    const url = `https://itunes.apple.com/search?media=movie&entity=movie&term=${encodeURIComponent(term)}&limit=40`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if(data.results && data.results.length){
-        renderGrid(data.results.map(m => ({
-          id: m.trackId,
-          title: m.trackName,
-          img: m.artworkUrl100.replace('100x100bb', '400x600bb'),
-          meta: m.primaryGenreName + ' • ' + (m.releaseDate || '').slice(0,4),
-          yt: 'cqGjhVJWtEg'
-        })));
-      } else {
-        renderGrid(sampleMovies);
-      }
-    } catch(e) {
-      renderGrid(sampleMovies);
-    }
-  }
+  const source = currentTab === 'movies' ? moviesLibrary : animeLibrary;
+  if(!query){ renderGrid(source); return; }
+  renderGrid(source.filter(item => item.title.toLowerCase().includes(query.toLowerCase())));
 }
 
 function renderGrid(items){
@@ -203,38 +159,27 @@ function renderGrid(items){
 function handleSearch(){
   clearTimeout(searchTimeout);
   const q = document.getElementById('searchInput').value.trim();
-  if(!q){ loadCatalog(); return; }
-  searchTimeout = setTimeout(() => {
-    document.getElementById('secTitle').innerText = `Search Results for "${q}"`;
-    loadCatalog(q);
-  }, 400);
+  searchTimeout = setTimeout(() => { loadCatalog(q); }, 200);
 }
 
 function openPlayer(item){
-  currentItem = item;
-  currentServer = 1;
+  currentItem = item; currentServer = 1;
   document.getElementById('pTitle').innerText = item.title;
-  updateServerUI();
-  playCurrentStream();
+  updateServerUI(); playCurrentStream();
   document.getElementById('modal').classList.remove('hidden');
 }
 
 function updateServerUI(){
-  for(let i=1; i<=6; i++){
-    document.getElementById('srv-'+i).classList.toggle('active', i === currentServer);
-  }
+  for(let i=1; i<=6; i++){ document.getElementById('srv-'+i).classList.toggle('active', i === currentServer); }
 }
 
 function switchServer(srv){
-  currentServer = srv;
-  updateServerUI();
-  playCurrentStream();
+  currentServer = srv; updateServerUI(); playCurrentStream();
 }
 
 function playCurrentStream(){
   const wrap = document.getElementById('vwrap');
   const ytId = currentItem.yt || 'cqGjhVJWtEg';
-  // Embed securely with zero-redirect web player frame
   wrap.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
 }
 
