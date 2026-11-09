@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Crunchyflix School - by Daksh Sharma</title>
+<style>
+:root{--bg:#0f0f0f;--s:#181818;--s2:#222;--line:#2c2c2c;--red:#ff4655;--text:#f3f3f3;--muted:#9a9a9a}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
+button,input,select{font:inherit;color:inherit}
+.hidden{display:none!important}
+#login{position:fixed;inset:0;display:grid;place-items:center;padding:20px;background:#0f0f0f;z-index:100}
+#login.out{opacity:0;visibility:hidden;transition:opacity .4s}
+.login-card{width:100%;max-width:380px;background:var(--s);border:1px solid var(--line);border-radius:16px;padding:36px 28px;text-align:center}
+.brand{font-weight:900;font-size:1.8rem;color:var(--red)}
+.brand-sub{color:var(--muted);font-size:.85rem;margin-top:4px}
+.field{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;margin-top:14px;color:#fff;text-align:center}
+.btn-primary{width:100%;margin-top:14px;padding:13px;background:var(--red);border:0;border-radius:10px;font-weight:700;cursor:pointer}
+header{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1400px;margin:auto;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;background:var(--s);padding:4px;border-radius:999px;border:1px solid var(--line)}
+.tab{border:0;background:transparent;padding:7px 20px;border-radius:999px;cursor:pointer;font-weight:600;color:var(--muted)}
+.tab.active{background:var(--red);color:#fff}
+.search{flex:1;max-width:340px}
+.search input{border-radius:999px;background:var(--s);padding-left:18px;text-align:left}
+main{max-width:1400px;margin:auto;padding:16px}
+.section-title{font-size:1.15rem;font-weight:800;margin:16px 0 12px;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.card{background:var(--s);border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--red)}
+.poster{aspect-ratio:2/3;background:#222;position:relative}
+.poster img{width:100%;height:100%;object-fit:cover}
+.info{padding:8px}
+.info h3{font-size:.8rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.info small{color:var(--muted);font-size:.7rem}
+#modal{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.98);display:flex;flex-direction:column}
+.p-head{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#141414;border-bottom:1px solid var(--line)}
+.vwrap{position:relative;width:100%;flex-grow:1;background:#000;display:flex;align-items:center;justify-content:center}
+iframe{width:100%;height:100%;border:0;background:#000}
+.controls{background:#141414;border-top:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:10px;max-height:45vh;overflow-y:auto}
+.server-group{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.server-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-right:4px;min-width:70px}
+.chip{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--s);cursor:pointer;font-size:.78rem;font-weight:600}
+.chip.active{background:var(--red);border-color:var(--red);color:#fff}
+</style>
+</head>
+<body>
+
+<section id="login">
+<div class="login-card">
+<div class="brand">Crunchyflix School</div>
+<div class="brand-sub">by Daksh Sharma</div>
+<input class="field" id="pass" type="text" value="Daksh 528" placeholder="Passcode">
+<button class="btn-primary" onclick="tryLogin()">Enter Platform</button>
+<div id="err" style="color:var(--red);font-size:.82rem;margin-top:10px"></div>
+</div>
+</section>
+
+<div id="app" class="hidden">
+<header>
+<div class="bar">
+<div><div class="brand" style="font-size:1.25rem">Crunchyflix</div><div class="brand-sub">School Edition</div></div>
+<div class="tabs">
+<button class="tab active" id="btn-movies" onclick="switchTab('movies')">Movies</button>
+<button class="tab" id="btn-anime" onclick="switchTab('anime')">Anime</button>
+</div>
+<div class="search"><input class="field" id="searchInput" type="search" placeholder="Search catalog..." oninput="handleSearch()"></div>
+</div>
+</header>
+<main>
+<div class="section-title" id="secTitle">Popular Global Movies</div>
+<div class="grid" id="mainGrid"></div>
+</main>
+</div>
+
+<div id="modal" class="hidden">
+<div class="p-head"><h2 id="pTitle" style="font-size:1rem;color:var(--red)">Streaming</h2><button class="chip" onclick="closePlayer()">✕ Close</button></div>
+<div class="vwrap" id="vwrap"></div>
+<div class="controls">
+<div class="server-group">
+<span class="server-label">Servers:</span>
+<button class="chip active" id="srv-1" onclick="switchServer(1)">1. Hindi Dub</button>
+<button class="chip" id="srv-2" onclick="switchServer(2)">2. English Dub</button>
+<button class="chip" id="srv-3" onclick="switchServer(3)">3. Japanese Dub</button>
+<button class="chip" id="srv-4" onclick="switchServer(4)">4. Hindi + Subs</button>
+<button class="chip" id="srv-5" onclick="switchServer(5)">5. English + Subs</button>
+<button class="chip" id="srv-6" onclick="switchServer(6)">6. Japanese + Subs</button>
+</div>
+</div>
+</div>
+
+<script>
+let currentTab = 'movies';
+let currentItem = null;
+let currentServer = 1;
+let searchTimeout = null;
+
+const sampleMovies = [
+  { id: 'm1', title: 'Spider-Man: Across the Spider-Verse', img: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500', meta: 'Action • 2023', yt: 'cqGjhVJWtEg' },
+  { id: 'm2', title: 'Avengers: Endgame', img: 'https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=500', meta: 'Action • 2019', yt: 'TcMBFSGVi1c' },
+  { id: 'm3', title: 'Interstellar', img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500', meta: 'Sci-Fi • 2014', yt: 'zSWdZVtXA7E' },
+  { id: 'm4', title: 'The Dark Knight', img: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500', meta: 'Action • 2008', yt: 'EXeTwQWrcwY' }
+];
+
+function tryLogin(){
+  const p = document.getElementById('pass').value.trim();
+  if(p.toLowerCase() === 'daksh 528' || p === 'Daksh 528'){
+    localStorage.setItem('cfs_auth', '1');
+    document.getElementById('login').classList.add('out');
+    document.getElementById('app').classList.remove('hidden');
+    switchTab('movies');
+  } else {
+    document.getElementById('err').textContent = 'Incorrect passcode!';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem('cfs_auth') === '1'){
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    switchTab('movies');
+  }
+});
+
+function switchTab(tab){
+  currentTab = tab;
+  document.getElementById('btn-movies').classList.toggle('active', tab === 'movies');
+  document.getElementById('btn-anime').classList.toggle('active', tab === 'anime');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('secTitle').innerText = tab === 'movies' ? 'Popular Global Movies' : 'Trending Worldwide Anime';
+  loadCatalog();
+}
+
+async function loadCatalog(query = null){
+  const grid = document.getElementById('mainGrid');
+  grid.innerHTML = '<p style="color:var(--muted)">Loading catalog...</p>';
+  
+  if(currentTab === 'anime'){
+    const gql = `
+      query ($search: String) {
+        Page(page: 1, perPage: 40) {
+          media(type: ANIME, search: $search, sort: [TRENDING_DESC]) {
+            id title { english romaji } coverImage { extraLarge } episodes trailer { id site }
+          }
+        }
+      }`;
+    try {
+      const res = await fetch('https://graphql.anilist.co', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ query: gql, variables: { search: query } })
+      });
+      const data = await res.json();
+      renderGrid(data.data.Page.media.map(m => ({
+        id: m.id,
+        title: m.title.english || m.title.romaji,
+        img: m.coverImage.extraLarge,
+        meta: m.episodes ? m.episodes + ' Episodes' : 'Anime Series',
+        yt: m.trailer && m.trailer.site === 'youtube' ? m.trailer.id : 'cqGjhVJWtEg'
+      })));
+    } catch(e) {
+      grid.innerHTML = '<p style="color:var(--red)">Failed to load anime catalog.</p>';
+    }
+  } else {
+    const term = query || 'action';
+    const url = `https://itunes.apple.com/search?media=movie&entity=movie&term=${encodeURIComponent(term)}&limit=40`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if(data.results && data.results.length){
+        renderGrid(data.results.map(m => ({
+          id: m.trackId,
+          title: m.trackName,
+          img: m.artworkUrl100.replace('100x100bb', '400x600bb'),
+          meta: m.primaryGenreName + ' • ' + (m.releaseDate || '').slice(0,4),
+          yt: 'cqGjhVJWtEg'
+        })));
+      } else {
+        renderGrid(sampleMovies);
+      }
+    } catch(e) {
+      renderGrid(sampleMovies);
+    }
+  }
+}
+
+function renderGrid(items){
+  const grid = document.getElementById('mainGrid');
+  if(!items.length){ grid.innerHTML = '<p style="color:var(--muted)">No titles found.</p>'; return; }
+  grid.innerHTML = items.map(item => `
+    <div class="card" onclick='openPlayer(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+      <div class="poster"><img src="${item.img}" loading="lazy" alt=""></div>
+      <div class="info">
+        <h3>${item.title}</h3>
+        <small>${item.meta}</small>
+      </div>
+    </div>
+  `).join('');
+}
+
+function handleSearch(){
+  clearTimeout(searchTimeout);
+  const q = document.getElementById('searchInput').value.trim();
+  if(!q){ loadCatalog(); return; }
+  searchTimeout = setTimeout(() => {
+    document.getElementById('secTitle').innerText = `Search Results for "${q}"`;
+    loadCatalog(q);
+  }, 400);
+}
+
+function openPlayer(item){
+  currentItem = item;
+  currentServer = 1;
+  document.getElementById('pTitle').innerText = item.title;
+  updateServerUI();
+  playCurrentStream();
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function updateServerUI(){
+  for(let i=1; i<=6; i++){
+    document.getElementById('srv-'+i).classList.toggle('active', i === currentServer);
+  }
+}
+
+function switchServer(srv){
+  currentServer = srv;
+  updateServerUI();
+  playCurrentStream();
+}
+
+function playCurrentStream(){
+  const wrap = document.getElementById('vwrap');
+  const ytId = currentItem.yt || 'cqGjhVJWtEg';
+  // Embed securely with zero-redirect web player frame
+  wrap.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+}
+
+function closePlayer(){
+  document.getElementById('vwrap').innerHTML = '';
+  document.getElementById('modal').classList.add('hidden');
+}
+</script>
+</body>
+</html>
